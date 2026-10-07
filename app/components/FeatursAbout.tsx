@@ -1,0 +1,257 @@
+"use client";
+
+import Image from "next/image";
+import Link from "next/link";
+import {
+  Camera,
+  Lightbulb,
+  Trophy,
+  Gem,
+  ArrowRight,
+  CalendarDays,
+} from "lucide-react";
+
+const features = [
+  {
+    icon: Camera,
+    title: "20+ Years Experience",
+    description: "Decades of expertise in photography & videography.",
+  },
+  {
+    icon: Lightbulb,
+    title: "Creative Shoot Ideas",
+    description: "Unique and creative concepts for every occasion.",
+  },
+  {
+    icon: Trophy,
+    title: "Globally Awarded",
+    description: "Recognized for excellence in photography and filmmaking.",
+  },
+  {
+    icon: Gem,
+    title: "Best Quality Photos",
+    description: "High-quality, professionally edited images.",
+  },
+];
+
+export default function OurFeatures() {
+  return (
+    <section className="relative overflow-hidden bg-[#0b0a09] py-16 lg:min-h-[680px] lg:py-12">
+      {/* ================================================= */}
+      {/* BACKGROUND */}
+      {/* ================================================= */}
+
+      <div className="pointer-events-none absolute inset-0">
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_25%_50%,rgba(120,78,32,0.12),transparent_45%)]" />
+
+        <div className="absolute right-0 top-0 h-full w-[50%] bg-[radial-gradient(circle_at_70%_45%,rgba(120,78,32,0.10),transparent_65%)]" />
+      </div>
+
+      <div className="relative mx-auto max-w-[1400px] px-6 lg:px-14">
+        <div className="grid items-center gap-8 lg:grid-cols-[50%_50%]">
+
+          {/* ================================================= */}
+          {/* LEFT - IMAGE COLLAGE */}
+          {/* ================================================= */}
+
+          <div className="relative min-h-[570px] lg:min-h-[590px]">
+
+            {/* Background image / glow */}
+            <div className="absolute left-0 top-0 h-full w-full opacity-30">
+              <div className="absolute inset-0 bg-[radial-gradient(circle_at_35%_50%,rgba(180,125,54,0.35),transparent_55%)]" />
+            </div>
+
+            {/* Gold vertical decoration */}
+            <div className="absolute left-[2%] top-[55px] z-0 h-[275px] w-[55px] bg-[#dca653] sm:w-[70px]" />
+
+            {/* ================================================= */}
+            {/* MAIN WEDDING IMAGE */}
+            {/* ================================================= */}
+
+            <div className="absolute left-[10%] top-0 z-10 w-[72%] sm:left-[10%] sm:w-[72%]">
+              <div className="relative aspect-[1/1.02] overflow-hidden border border-[#c39450]">
+                <Image
+                  src="/Home/WeddingPhotography.png"
+                  alt="Wedding photography"
+                  fill
+                  priority
+                  sizes="(max-width: 1024px) 70vw, 40vw"
+                  className="object-cover"
+                />
+              </div>
+            </div>
+
+            {/* ================================================= */}
+            {/* SMALL CAMERA IMAGE */}
+            {/* ================================================= */}
+
+            <div className="absolute bottom-[15px] left-[5%] z-30 w-[35%] sm:left-[5%] sm:w-[35%]">
+              <div className="relative aspect-[1.3/0.95] overflow-hidden border border-[#dca653]">
+                <Image
+                  src="/Home/CanonDSLR.png"
+                  alt="Professional camera"
+                  fill
+                  sizes="350px"
+                  className="object-cover"
+                />
+              </div>
+            </div>
+
+            {/* ================================================= */}
+            {/* BOTTOM GOLD DECORATION */}
+            {/* ================================================= */}
+
+            <div className="absolute bottom-[58px] right-[12%] z-0 h-[85px] w-[70px] bg-[#dca653] sm:right-[13%] sm:w-[90px]" />
+
+            {/* ================================================= */}
+            {/* 50+ STAT */}
+            {/* ================================================= */}
+
+            <div className="absolute bottom-[5px] right-[30%] z-40 flex h-[125px] w-[145px] flex-col items-center justify-center border border-[#a8793b] bg-[#0e0d0c] sm:h-[135px] sm:w-[155px]">
+              <Camera
+                size={23}
+                strokeWidth={1.5}
+                className="mb-1 text-[#dca653]"
+              />
+
+              <span className="font-serif text-[36px] leading-none text-white">
+                50+
+              </span>
+
+              <span className="mt-1 text-[12px] text-white/60">
+                Photographers
+              </span>
+            </div>
+
+            {/* ================================================= */}
+            {/* 300+ STAT */}
+            {/* ================================================= */}
+
+            <div className="absolute bottom-[5px] right-[3%] z-40 flex h-[125px] w-[145px] flex-col items-center justify-center border border-[#dca653] bg-[#e5b96d] sm:h-[135px] sm:w-[155px]">
+              <CalendarDays
+                size={23}
+                strokeWidth={1.5}
+                className="mb-1 text-black"
+              />
+
+              <span className="font-serif text-[36px] leading-none text-black">
+                300+
+              </span>
+
+              <span className="mt-1 text-[12px] text-black/70">
+                Events Covered
+              </span>
+            </div>
+          </div>
+
+          {/* ================================================= */}
+          {/* RIGHT - WHY CHOOSE US */}
+          {/* ================================================= */}
+
+          <div className="relative z-20">
+
+            {/* Section Label */}
+            <div className="mb-2 flex items-center gap-5">
+              <span className="font-sans text-[12px] font-medium tracking-[0.22em] text-[#dca653]">
+                OUR FEATURES
+              </span>
+
+              <span className="h-px w-[115px] bg-[#805e35]" />
+            </div>
+
+            {/* Heading */}
+            <h2 className="font-serif text-[48px] leading-[0.95] text-white sm:text-[58px] lg:text-[60px]">
+              Why{" "}
+              <span className="font-serif font-light italic text-[#dca653]">
+                Choose Us
+              </span>
+            </h2>
+
+            {/* Description */}
+            <p className="mt-5 max-w-[540px] font-sans text-[15px] leading-6 text-white/70">
+              At Lumora Astudio, we turn your special moments into timeless
+              visual stories with creativity, passion and expertise.
+            </p>
+
+            {/* ================================================= */}
+            {/* FEATURE LIST */}
+            {/* ================================================= */}
+
+            <div className="mt-5 max-w-[540px]">
+              {features.map((feature, index) => {
+                const Icon = feature.icon;
+
+                return (
+                  <div
+                    key={feature.title}
+                    className={`group flex items-center gap-5 py-4 ${
+                      index !== features.length - 1
+                        ? "border-b border-white/[0.09]"
+                        : ""
+                    }`}
+                  >
+                    {/* ICON */}
+                    <div className="flex h-[52px] w-[52px] shrink-0 items-center justify-center rounded-full border border-[#b27b32] text-[#dca653] transition-all duration-300 group-hover:bg-[#dca653] group-hover:text-black">
+                      <Icon
+                        size={25}
+                        strokeWidth={1.5}
+                      />
+                    </div>
+
+                    {/* TEXT */}
+                    <div className="min-w-0 flex-1">
+                      <h3 className="font-serif text-[19px] leading-tight text-white sm:text-[20px]">
+                        {feature.title}
+                      </h3>
+
+                      <p className="mt-1 max-w-[300px] font-sans text-[13px] leading-5 text-white/50">
+                        {feature.description}
+                      </p>
+                    </div>
+
+                   
+                    
+                  </div>
+                );
+              })}
+            </div>
+
+            {/* ================================================= */}
+            {/* FLOATING INFO CARD */}
+            {/* ================================================= */}
+
+            <div className="absolute -right-[15px] top-[165px] z-50 hidden w-[235px] border border-[#9a713c] bg-[#0d0c0b] px-6 py-6 shadow-2xl xl:block">
+
+              <p className="text-[10px] tracking-[0.18em] text-[#dca653]">
+                LUMORA ASTUDIO
+              </p>
+
+              <h3 className="mt-3 font-serif text-[24px] leading-[1.05] text-white">
+                Capturing More
+                <br />
+                Than Just Photos
+              </h3>
+
+              <div className="my-4 h-[2px] w-[34px] bg-[#dca653]" />
+
+              <p className="font-sans text-[12px] leading-[1.6] text-white/55">
+                Lumora Astudio has over 20 years of experience in photography &
+                videography, which makes us the pioneers in this profession.
+                We are having so much fun doing this, because your happiness is
+                our inspiration.
+              </p>
+
+              <Link
+                href="/about"
+                className="mt-4 inline-flex items-center gap-2 text-[12px] font-medium text-[#dca653] transition hover:text-white"
+              >
+                More About
+                <ArrowRight size={14} />
+              </Link>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}

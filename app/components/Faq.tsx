@@ -1,0 +1,225 @@
+"use client";
+
+import Image from "next/image";
+import { useState } from "react";
+import { ChevronDown, MessageCircleQuestionMark } from "lucide-react";
+import { scriptFont } from "./siteData";
+
+const faqGroups = [
+  [
+    {
+      question: "How long have you been a photographer?",
+      answer:
+        "We have been working in the photography industry for over 10 years, capturing weddings, newborn, fashion and portfolio photography. Our experience allows us to create beautiful, high-quality images that tell your unique story.",
+    },
+    {
+      question: "Do you edit all of your photographs?",
+      answer:
+        "Yes. Every image we deliver is carefully selected and professionally edited for colour, light and tone so your gallery feels consistent and timeless.",
+    },
+    {
+      question: "Do you work with a second photographer?",
+      answer:
+        "For weddings and large events we usually work with a second photographer, so no important moment or angle is missed.",
+    },
+    {
+      question: "Do you have an assistant?",
+      answer:
+        "Yes, an assistant joins us on most shoots to help with lighting, equipment and keeping everything running smoothly.",
+    },
+    {
+      question: "Do you also provide video services?",
+      answer:
+        "We do. Our team offers wedding cinematography, event films and drone coverage alongside photography.",
+    },
+    {
+      question: "Do you have past clients we can speak to as references?",
+      answer:
+        "Of course. We are happy to connect you with past clients who can share their experience of working with us.",
+    },
+  ],
+  [
+    {
+      question: "Are our digital files watermarked?",
+      answer:
+        "No. The final digital files you receive are high resolution and free from any watermark.",
+    },
+    {
+      question: "How many pictures will we receive?",
+      answer:
+        "It depends on the package and length of the shoot. A full-day wedding typically includes several hundred edited images.",
+    },
+    {
+      question: "How long does it take before we receive our products and photographs?",
+      answer:
+        "Sneak peeks are shared within a week. The complete edited gallery is usually delivered within 3 to 4 weeks.",
+    },
+  ],
+];
+
+export default function Faq() {
+  const [openItem, setOpenItem] = useState<string | null>("0-0");
+
+  return (
+    <section className="relative overflow-hidden bg-[#0b0a09]">
+      {/* ================= BACKGROUND ================= */}
+      <div className="pointer-events-none absolute inset-0">
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_0%,rgba(151,103,44,0.16),transparent_55%)]" />
+
+        <div className="absolute right-0 top-0 h-full w-[45%] bg-[radial-gradient(circle_at_70%_30%,rgba(151,103,44,0.18),transparent_65%)]" />
+      </div>
+
+      {/* Photographer image - top right */}
+      <div className="pointer-events-none absolute right-0 top-0 hidden h-[260px] w-[36%] lg:block">
+        <Image
+          src="/Faq/FaqPhotographer.png"
+          alt=""
+          fill
+          sizes="36vw"
+          className="object-cover object-left-top"
+        />
+
+        <div className="absolute inset-0 bg-gradient-to-r from-[#0b0a09] via-transparent to-transparent" />
+
+        <div className="absolute inset-x-0 bottom-0 h-20 bg-gradient-to-t from-[#0b0a09] to-transparent" />
+      </div>
+
+      <div className="relative mx-auto grid max-w-[1400px] gap-10 px-6 py-14 lg:grid-cols-[minmax(0,1fr)_380px] lg:gap-9 lg:px-[106px] lg:pb-16 lg:pt-11">
+        {/* ================================================= */}
+        {/* LEFT - QUESTIONS */}
+        {/* ================================================= */}
+        <div className="min-w-0">
+          <div className="flex items-center gap-4">
+            <span className="font-sans text-[13px] tracking-[0.1em] text-[#dca653]">
+              FAQ
+            </span>
+
+            <span className="h-px w-[105px] bg-[#b07d3a]" />
+          </div>
+
+          <h2 className="mt-1 flex flex-wrap items-baseline gap-x-4 font-serif text-[36px] font-semibold leading-tight text-white sm:text-[46px]">
+            Frequently Asked
+            <span
+              className="font-normal text-[#dca653]"
+              style={scriptFont}
+            >
+              Questions
+            </span>
+          </h2>
+
+          <p className="mt-2 max-w-[620px] font-sans text-[15px] leading-[1.45] text-white/85">
+            Find answers to the most common questions about our photography
+            services, booking process, pricing and more. If you still need
+            help, feel free to contact our team anytime.
+          </p>
+
+          <h3 className="mt-7 font-serif text-[23px] font-semibold text-white">
+            General Questions
+          </h3>
+
+          <div className="mt-2 h-[3px] w-[34px] bg-[#e3ad5c]" />
+
+          {/* Accordion groups */}
+          <div className="mt-5 space-y-3">
+            {faqGroups.map((group, groupIndex) => (
+              <div key={groupIndex} className="space-y-1.5">
+                {group.map((faq, index) => {
+                  const id = `${groupIndex}-${index}`;
+                  const isOpen = openItem === id;
+
+                  return (
+                    <div
+                      key={id}
+                      className={`overflow-hidden rounded-[4px] border transition-colors ${
+                        isOpen
+                          ? "border-[#f2c47e] bg-[#0e0d0b]"
+                          : "border-white/25 bg-[#0e0d0b]/80 hover:border-[#dca653]/60"
+                      }`}
+                    >
+                      <h4>
+                        <button
+                          type="button"
+                          aria-expanded={isOpen}
+                          aria-controls={`faq-panel-${id}`}
+                          onClick={() => setOpenItem(isOpen ? null : id)}
+                          className={`flex w-full items-center gap-6 px-4 py-[7px] text-left transition-colors ${
+                            isOpen ? "bg-[#f8cd88] text-[#17120b]" : "text-white"
+                          }`}
+                        >
+                          <span className="flex h-[29px] w-[29px] shrink-0 items-center justify-center rounded-full bg-[#f5b85c] font-sans text-[12px] font-semibold text-[#17120b]">
+                            {String(index + 1).padStart(2, "0")}
+                          </span>
+
+                          <span className="flex-1 font-sans text-[13px] font-medium">
+                            {faq.question}
+                          </span>
+
+                          <span
+                            className={`flex h-[20px] w-[20px] shrink-0 items-center justify-center rounded-full border transition-transform duration-300 ${
+                              isOpen
+                                ? "rotate-180 border-[#17120b] text-[#17120b]"
+                                : "border-[#dca653] text-[#dca653]"
+                            }`}
+                          >
+                            <ChevronDown size={13} strokeWidth={2} />
+                          </span>
+                        </button>
+                      </h4>
+
+                      <div
+                        id={`faq-panel-${id}`}
+                        role="region"
+                        hidden={!isOpen}
+                        className="px-[70px] pb-3 pt-3 font-sans text-[12px] leading-[1.55] text-white/85"
+                      >
+                        {faq.answer}
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* ================================================= */}
+        {/* RIGHT - INFO CARD */}
+        {/* ================================================= */}
+        <aside className="self-end overflow-hidden rounded-[6px] border border-[#5c4428] bg-[#0e0d0b]/90 lg:mb-[-10px]">
+          <div className="relative h-[205px]">
+            <Image
+              src="/Faq/FaqCamera.png"
+              alt="Professional camera on a table"
+              fill
+              sizes="380px"
+              className="object-cover"
+            />
+          </div>
+
+          <div className="px-7 pb-7 pt-5">
+            <div className="flex items-start justify-between">
+              <div>
+                <h3 className="font-serif text-[32px] font-bold leading-none text-white">
+                  FAQ
+                </h3>
+
+                <div className="mt-3 h-[3px] w-[34px] bg-[#e3ad5c]" />
+              </div>
+
+              <MessageCircleQuestionMark
+                size={36}
+                strokeWidth={1.3}
+                className="text-[#e3ad5c]"
+              />
+            </div>
+
+            <p className="mt-4 font-sans text-[15px] leading-[1.4] text-white/85">
+              Here you&apos;ll find answers to the most common questions about
+              our photography services, booking process and more.
+            </p>
+          </div>
+        </aside>
+      </div>
+    </section>
+  );
+}
