@@ -5,6 +5,7 @@ import "./globals.css";
 
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
+import ScrollReveal from "./components/ScrollReveal";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -30,9 +31,20 @@ export default function RootLayout({
   return (
     <html
       lang="en"
+      suppressHydrationWarning
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
+      <head>
+        {/* Enables the hidden state for scroll animations before first paint */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html: "document.documentElement.classList.add('reveal-ready')",
+          }}
+        />
+      </head>
       <body className="min-h-screen flex flex-col bg-[#0b0a09]">
+        <ScrollReveal />
+
         {/* Navbar - Every Page */}
         <Navbar />
 

@@ -2,62 +2,13 @@
 
 import Image from "next/image";
 import Link from "next/link";
+import { revealDelay } from "./siteData";
+import { teamMembers } from "@/data";
 import {
   ArrowLeft,
   ArrowRight,
   Globe,
 } from "lucide-react";
-
-const teamMembers = [
-  {
-    name: "Nelson Jameson",
-    role: "PHOTOGRAPHER",
-    image: "/About/NelsonJameson.png",
-  },
-  {
-    name: "Ellie Duncan",
-    role: "PHOTOGRAPHER",
-    image: "/About/EllieDuncan.png",
-  },
-  {
-    name: "Maxim Alexander",
-    role: "CEO, KIMONO AGENCY",
-    image: "/About/MaximAlexander.png",
-  },
-  {
-    name: "Sarah Mitchell",
-    role: "PHOTOGRAPHER",
-    image: "/About/SarahMitchell.png",
-  },
-  {
-    name: "David Wilson",
-    role: "PHOTOGRAPHER",
-    image: "/About/DavidWilson.png",
-  },
-];
-
-const socialLinks = [
-  {
-    type: "facebook",
-    href: "#",
-    label: "Facebook",
-  },
-  {
-    type: "instagram",
-    href: "#",
-    label: "Instagram",
-  },
-  {
-    type: "youtube",
-    href: "#",
-    label: "YouTube",
-  },
-  {
-    type: "globe",
-    href: "#",
-    label: "Website",
-  },
-];
 
 export default function OurcoreTeams() {
   return (
@@ -74,7 +25,7 @@ export default function OurcoreTeams() {
 
         {/* ================= HEADER ================= */}
 
-        <div className="grid items-start gap-8 lg:grid-cols-[45%_55%]">
+        <div data-reveal="up" className="grid items-start gap-8 lg:grid-cols-[45%_55%]">
 
           {/* LEFT HEADING */}
           <div>
@@ -130,9 +81,11 @@ export default function OurcoreTeams() {
         {/* ================= TEAM CARDS ================= */}
 
         <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-5">
-          {teamMembers.map((member) => (
+          {teamMembers.map((member, index) => (
             <article
               key={member.name}
+              data-reveal="up"
+              style={revealDelay(index)}
               className="group relative overflow-hidden border border-[#76552d] bg-[#0e0d0b] transition-all duration-500 hover:-translate-y-1 hover:border-[#dca653]"
             >
               {/* ================= IMAGE ================= */}

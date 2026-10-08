@@ -3,37 +3,11 @@
 import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight, ArrowLeft, CalendarDays } from "lucide-react";
+import { revealDelay } from "./siteData";
+import { blogPosts } from "@/data";
 
-const blogs = [
-  {
-    date: "25 SEP 2023",
-    title: "Beginners guide to start your photography journey",
-    author: "Ashton William",
-    image: "/Home/GoldenHourPhotographer.png",
-    avatar: "/Home/Avatar-1.jpg",
-  },
-  {
-    date: "22 SEP 2023",
-    title: "Twenty photography tips to make photos amazing",
-    author: "Olivia Rose",
-    image: "/Home/CanonDSLR.png",
-    avatar: "/Home/Avatar-2.jpg",
-  },
-  {
-    date: "22 SEP 2023",
-    title: "What Norway is best spots For Photography",
-    author: "Justin Burke",
-    image: "/Home/SunsetMountain.png",
-    avatar: "/Home/Avatar-2.jpg",
-  },
-  {
-    date: "18 SEP 2023",
-    title: "Essential editing tips to enhance your photos",
-    author: "Emma Clarke",
-    image: "/Home/WarmPhotography.png",
-    avatar: "/Home/avatar-1.jpg",
-  },
-];
+/* Latest four posts from data/blog.json */
+const latestPosts = blogPosts.slice(0, 4);
 
 export default function News() {
   return (
@@ -50,7 +24,7 @@ export default function News() {
         {/* HEADER */}
         {/* ================================================= */}
 
-        <div className="grid items-start gap-8 lg:grid-cols-2">
+        <div data-reveal="up" className="grid items-start gap-8 lg:grid-cols-2">
           {/* LEFT */}
           <div>
             {/* Label */}
@@ -109,19 +83,25 @@ export default function News() {
         {/* ================================================= */}
 
         <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-          {blogs.map((blog) => (
+          {latestPosts.map((post, index) => {
+            const title = `${post.titleLead} ${post.titleScript}`;
+            const href = `/blog/${post.slug}`;
+
+            return (
             <article
-              key={blog.title}
+              key={post.slug}
+              data-reveal="up"
+              style={revealDelay(index)}
               className="group relative overflow-hidden rounded-[15px] border border-[#76552d] bg-[#11100e] transition-all duration-500 hover:-translate-y-1 hover:border-[#dca653]"
             >
               {/* IMAGE */}
               <Link
-                href="/blog"
+                href={href}
                 className="relative block h-[195px] overflow-hidden"
               >
                 <Image
-                  src={blog.image}
-                  alt={blog.title}
+                  src={post.image}
+                  alt={title}
                   fill
                   sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
                   className="object-cover transition-transform duration-700 group-hover:scale-105"
@@ -140,13 +120,13 @@ export default function News() {
                     strokeWidth={1.7}
                   />
 
-                  {blog.date}
+                  {post.date}
                 </div>
 
                 {/* TITLE */}
-                <Link href="/blog">
+                <Link href={href}>
                   <h3 className="mt-4 min-h-[60px] font-serif text-[21px] leading-[1.12] text-white transition-colors duration-300 group-hover:text-[#dca653]">
-                    {blog.title}
+                    {title}
                   </h3>
                 </Link>
 
@@ -156,8 +136,8 @@ export default function News() {
                   <div className="flex min-w-0 items-center gap-2.5">
                     <div className="relative h-[32px] w-[32px] shrink-0 overflow-hidden rounded-full border border-[#76552d]">
                       <Image
-                        src={blog.avatar}
-                        alt={blog.author}
+                        src={post.avatar}
+                        alt={post.author}
                         fill
                         sizes="32px"
                         className="object-cover"
@@ -167,15 +147,15 @@ export default function News() {
                     <p className="truncate text-[12px] text-white/70">
                       By{" "}
                       <span className="text-white">
-                        {blog.author}
+                        {post.author}
                       </span>
                     </p>
                   </div>
 
                   {/* Arrow */}
                   <Link
-                    href="/blog"
-                    aria-label={`Read ${blog.title}`}
+                    href={href}
+                    aria-label={`Read ${title}`}
                     className="flex h-[40px] w-[40px] shrink-0 items-center justify-center rounded-full border border-[#a8793b] text-[#dca653] transition-all duration-300 hover:bg-[#dca653] hover:text-black"
                   >
                     <ArrowRight size={18} strokeWidth={1.5} />
@@ -183,7 +163,8 @@ export default function News() {
                 </div>
               </div>
             </article>
-          ))}
+            );
+          })}
         </div>
 
         {/* MOBILE NAVIGATION */}

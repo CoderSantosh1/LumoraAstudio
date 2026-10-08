@@ -2,7 +2,7 @@ import { Suspense } from "react";
 import { notFound } from "next/navigation";
 import PageHero from "@/app/components/PageHero";
 import BlogDetail from "@/app/components/BlogDetail";
-import { blogPosts, findBlogPost } from "@/app/components/siteData";
+import { blogPosts, findBlogPost } from "@/data";
 
 export function generateStaticParams() {
   return blogPosts.map((post) => ({ slug: post.slug }));

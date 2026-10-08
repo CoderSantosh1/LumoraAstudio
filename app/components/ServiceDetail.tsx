@@ -1,31 +1,18 @@
 import Image from "next/image";
 import Link from "next/link";
 import { Check } from "lucide-react";
-import { serviceItems, type ServiceItem } from "./siteData";
+import { serviceDetailContent, serviceSidebarOrder, services } from "@/data";
+import type { Service } from "@/types";
 
-const steps = [
-  "The talent at Lumora Astudio runs wide and deep. Across many markets, geographies",
-  "Our team members are some of the finest professionals in the industry",
-  "Organized to deliver the most specialized service possible and enriched by the geographies and typologies, our team members are some of the finest.",
-];
+const { intro, stepsIntro, steps, outro } = serviceDetailContent;
 
-/* Sidebar order follows the reference design */
-const sidebarOrder = [
-  "wedding-photography",
-  "personal-portfolio",
-  "product-photography",
-  "event-photography",
-  "studio-photography",
-  "drone-cinematography",
-  "wedding-cinematography",
-];
-
-export default function ServiceDetail({ service }: { service: ServiceItem }) {
+export default function ServiceDetail({ service }: { service: Service }) {
   const [firstWord, ...restWords] = service.title.split(" ");
-  const otherServices = [...serviceItems]
+  const otherServices = [...services]
     .sort(
       (a, b) =>
-        sidebarOrder.indexOf(a.slug) - sidebarOrder.indexOf(b.slug),
+        serviceSidebarOrder.indexOf(a.slug) -
+        serviceSidebarOrder.indexOf(b.slug),
     )
     .filter((item) => item.slug !== service.slug)
     .slice(0, 4);
@@ -43,7 +30,7 @@ export default function ServiceDetail({ service }: { service: ServiceItem }) {
         {/* ================================================= */}
         {/* LEFT - CONTENT */}
         {/* ================================================= */}
-        <div className="min-w-0">
+        <div data-reveal="left" className="min-w-0">
           {/* Main Image */}
           <div className="relative h-[220px] overflow-hidden border border-[#c39450] sm:h-[280px]">
             <Image
@@ -65,11 +52,7 @@ export default function ServiceDetail({ service }: { service: ServiceItem }) {
           <div className="mt-3 h-[2px] w-[50px] bg-[#dca653]" />
 
           <p className="mt-6 max-w-[800px] font-sans text-[16px] leading-[1.6] text-white/85 sm:text-[17px]">
-            The talent at Lumora Astudio runs wide and deep. Across many
-            markets, geographies &amp; typologies, our team members are some
-            of the finest professionals in the industry wide and deep. Across
-            many markets, geographies and typologies, our team members are
-            some of the finest.
+            {intro}
           </p>
 
           {/* ================= SERVICE STEPS ================= */}
@@ -80,9 +63,7 @@ export default function ServiceDetail({ service }: { service: ServiceItem }) {
           <div className="mt-3 h-[2px] w-[50px] bg-[#dca653]" />
 
           <p className="mt-5 max-w-[800px] font-sans text-[16px] leading-[1.6] text-white/85 sm:text-[17px]">
-            The talent at Lumora Astudio runs wide and deep. Across many
-            markets, geographies &amp; typologies, our team members are some
-            of the finest professionals in the industry wide and deep.
+            {stepsIntro}
           </p>
 
           <ul className="mt-4 space-y-2.5">
@@ -100,18 +81,14 @@ export default function ServiceDetail({ service }: { service: ServiceItem }) {
           </ul>
 
           <p className="mt-5 max-w-[800px] font-sans text-[16px] leading-[1.6] text-white/85 sm:text-[17px]">
-            The talent at Lumora Astudio runs wide and deep. Across many
-            markets, geographies &amp; typologies, our team members are some
-            of the finest professionals in the industry wide and deep. Across
-            many markets, geographies and typologies, our team members are
-            some of the finest.
+            {outro}
           </p>
         </div>
 
         {/* ================================================= */}
         {/* RIGHT - OTHER SERVICES */}
         {/* ================================================= */}
-        <aside className="lg:pt-5">
+        <aside data-reveal="right" className="lg:pt-5">
           <h3 className="font-serif text-[30px] leading-none text-white">
             <span className="text-[#e3ad5c]">Other</span> Services
           </h3>
@@ -141,7 +118,7 @@ export default function ServiceDetail({ service }: { service: ServiceItem }) {
                   </h4>
 
                   <p className="mt-2 font-sans text-[12px] leading-[1.5] text-white/75">
-                    {item.description}
+                    {item.shortDescription}
                   </p>
                 </div>
               </Link>

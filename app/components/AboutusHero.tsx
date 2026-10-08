@@ -26,7 +26,7 @@ export default function AboutHero() {
 
       {/* Heading */}
       <div className="relative z-10 flex h-full items-center justify-center">
-        <h1 className="mt-3 font-serif text-[48px] leading-none text-white sm:text-[60px] lg:text-[64px]">
+        <h1 data-reveal="up" className="mt-3 font-serif text-[48px] leading-none text-white sm:text-[60px] lg:text-[64px]">
           About Us
         </h1>
       </div>

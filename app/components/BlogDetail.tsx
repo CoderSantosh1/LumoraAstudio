@@ -5,16 +5,11 @@ import {
   Check,
   FolderOpen,
 } from "lucide-react";
-import { scriptFont, type BlogPost } from "./siteData";
+import { blogArticle } from "@/data";
+import type { BlogPost } from "@/types";
+import { scriptFont } from "./siteData";
 
-const concepts = [
-  "The talent at Lumora Astudio runs wide and deep. Across many markets, geographies.",
-  "Our team members are some of the finest professionals in the industry.",
-  "Organized to deliver the most specialized service possible and enriched by the diverse.",
-];
-
-const bodyText =
-  "Lumora Astudio is a full-service photography company providing wedding, newborn, fashion & portfolio photography. Our portfolio of completed work includes highly acclaimed and award-winning projects for clients around the country & globally also.";
+const { bodyText, concepts } = blogArticle;
 
 export default function BlogDetail({ post }: { post: BlogPost }) {
   return (
@@ -40,7 +35,7 @@ export default function BlogDetail({ post }: { post: BlogPost }) {
 
         <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_50%_0%,rgba(151,103,44,0.16),transparent_60%)]" />
 
-        <div className="relative mx-auto max-w-[1400px] px-6 pb-6 pt-16 lg:px-[70px] lg:pt-24">
+        <div data-reveal="left" className="relative mx-auto max-w-[1400px] px-6 pb-6 pt-16 lg:px-[70px] lg:pt-24">
           {/* Date */}
           <div className="inline-flex items-center gap-2.5 rounded-[10px] bg-[#f2bd6b] px-4 py-2 font-sans text-[17px] font-semibold text-[#17120b]">
             <CalendarDays size={18} strokeWidth={1.8} />
@@ -106,7 +101,7 @@ export default function BlogDetail({ post }: { post: BlogPost }) {
       {/* BODY */}
       {/* ================================================= */}
       <div className="relative mx-auto max-w-[1400px] px-6 pb-16 lg:px-[70px]">
-        <div className="relative h-[280px] overflow-hidden rounded-[10px] border border-[#5c4428] sm:h-[400px] lg:h-[476px]">
+        <div data-reveal="zoom" className="relative h-[280px] overflow-hidden rounded-[10px] border border-[#5c4428] sm:h-[400px] lg:h-[476px]">
           <Image
             src="/Blog/ProjectConcept.png"
             alt="Young photographer holding a vintage camera"
@@ -127,7 +122,7 @@ export default function BlogDetail({ post }: { post: BlogPost }) {
         </p>
 
         {/* Concept list */}
-        <ul className="mt-6 rounded-[10px] border border-[#8d6a3d] px-6 py-2 sm:px-11">
+        <ul data-reveal="up" className="mt-6 rounded-[10px] border border-[#8d6a3d] px-6 py-2 sm:px-11">
           {concepts.map((concept, index) => (
             <li
               key={concept}
@@ -150,7 +145,7 @@ export default function BlogDetail({ post }: { post: BlogPost }) {
           {bodyText}
         </p>
 
-        <div className="relative mt-6 h-[260px] overflow-hidden rounded-[10px] sm:h-[380px] lg:h-[444px]">
+        <div data-reveal="zoom" className="relative mt-6 h-[260px] overflow-hidden rounded-[10px] sm:h-[380px] lg:h-[444px]">
           <Image
             src="/Blog/LakePhotographer.png"
             alt="Photographer shooting a mountain lake"

@@ -4,35 +4,11 @@ import Image from "next/image";
 import Link from "next/link";
 import {
   Camera,
-  Lightbulb,
-  Trophy,
-  Gem,
   ArrowRight,
   CalendarDays,
 } from "lucide-react";
-
-const features = [
-  {
-    icon: Camera,
-    title: "20+ Years Experience",
-    description: "Decades of expertise in photography & videography.",
-  },
-  {
-    icon: Lightbulb,
-    title: "Creative Shoot Ideas",
-    description: "Unique and creative concepts for every occasion.",
-  },
-  {
-    icon: Trophy,
-    title: "Globally Awarded",
-    description: "Recognized for excellence in photography and filmmaking.",
-  },
-  {
-    icon: Gem,
-    title: "Best Quality Photos",
-    description: "High-quality, professionally edited images.",
-  },
-];
+import { features } from "@/data";
+import { icons } from "./icons";
 
 export default function OurFeatures() {
   return (
@@ -54,7 +30,7 @@ export default function OurFeatures() {
           {/* LEFT - IMAGE COLLAGE */}
           {/* ================================================= */}
 
-          <div className="relative min-h-[570px] lg:min-h-[590px]">
+          <div data-reveal="left" className="relative min-h-[570px] lg:min-h-[590px]">
 
             {/* Background image / glow */}
             <div className="absolute left-0 top-0 h-full w-full opacity-30">
@@ -148,7 +124,7 @@ export default function OurFeatures() {
           {/* RIGHT - WHY CHOOSE US */}
           {/* ================================================= */}
 
-          <div className="relative z-20">
+          <div data-reveal="right" className="relative z-20">
 
             {/* Section Label */}
             <div className="mb-2 flex items-center gap-5">
@@ -179,7 +155,7 @@ export default function OurFeatures() {
 
             <div className="mt-5 max-w-[540px]">
               {features.map((feature, index) => {
-                const Icon = feature.icon;
+                const Icon = icons[feature.icon];
 
                 return (
                   <div

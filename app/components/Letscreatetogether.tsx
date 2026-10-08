@@ -33,7 +33,7 @@ export default function LetsCreatetogether() {
       {/* ================================================= */}
 
       <div className="relative z-10 mx-auto flex min-h-[470px] max-w-[1400px] items-center px-6 py-16 lg:min-h-[490px] lg:px-14">
-        <div className="max-w-[650px]">
+        <div data-reveal="left" className="max-w-[650px]">
 
           {/* Small heading */}
           <div className="mb-3 flex items-center gap-5">

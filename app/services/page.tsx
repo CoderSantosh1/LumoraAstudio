@@ -7,7 +7,7 @@ export default function Service (){
     return (
         <>
         <Servicehero />
-        <Services />
+        <Services showAll />
         </>
     )
 

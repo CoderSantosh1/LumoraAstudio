@@ -8,44 +8,11 @@ import {
   Mail,
   ChevronRight,
 } from "lucide-react";
-import { contactDetails } from "./siteData";
+import { contactDetails, navigation } from "@/data";
 
-const quickLinks = [
-  { name: "Home", href: "/" },
-  { name: "About Us", href: "/about" },
-  { name: "Services", href: "/services" },
-  { name: "Portfolio", href: "/portfolio" },
-  { name: "Gallery", href: "/gallery" },
-  { name: "Blog", href: "/blog" },
-  { name: "Contact Us", href: "/contact" },
-];
+const quickLinks = navigation.footerQuickLinks;
 
-const services = [
-  {
-    name: "Wedding Photography",
-    href: "/services/wedding-photography",
-  },
-  {
-    name: "Drone Cinematography",
-    href: "/services/drone-cinematography",
-  },
-  {
-    name: "Wedding Cinematography",
-    href: "/services/wedding-cinematography",
-  },
-  {
-    name: "Personal Portfolio Shoot",
-    href: "/services/personal-portfolio",
-  },
-  {
-    name: "Event Photography",
-    href: "/services/event-photography",
-  },
-  {
-    name: "Product Photography",
-    href: "/services/product-photography",
-  },
-];
+const services = navigation.footerServices;
 
 export default function Footer() {
   return (
@@ -83,7 +50,7 @@ export default function Footer() {
           Content intentionally stops before the camera.
           Camera area on the right remains clean.
         */}
-        <div className="grid gap-10 lg:grid-cols-[280px_170px_220px_220px] lg:gap-10">
+        <div data-reveal="up" className="grid gap-10 lg:grid-cols-[280px_170px_220px_220px] lg:gap-10">
 
           {/* ================================================= */}
           {/* BRAND */}

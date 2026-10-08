@@ -2,14 +2,13 @@ import { Suspense } from "react";
 import { notFound } from "next/navigation";
 import PageHero from "@/app/components/PageHero";
 import ServiceDetail from "@/app/components/ServiceDetail";
-import { findService, serviceItems } from "@/app/components/siteData";
+import { findService, services } from "@/data";
 
 export function generateStaticParams() {
-  return serviceItems.flatMap((service) =>
-    service.number
-      ? [{ slug: service.slug }, { slug: service.number }]
-      : [{ slug: service.slug }],
-  );
+  return services.flatMap((service) => [
+    { slug: service.slug },
+    { slug: service.number },
+  ]);
 }
 
 function ServiceContent({ slug }: { slug: string }) {

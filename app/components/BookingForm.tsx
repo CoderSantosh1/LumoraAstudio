@@ -15,13 +15,8 @@ import {
   Phone,
   UserRound,
 } from "lucide-react";
-import { scriptFont, serviceItems } from "./siteData";
-
-const packages = [
-  "Basic Package - 2 Hours",
-  "Standard Package - 4 Hours",
-  "Premium Package - Full Day",
-];
+import { bookingLocations, bookingPackages, services } from "@/data";
+import { scriptFont } from "./siteData";
 
 const fieldClass =
   "h-[56px] w-full rounded-[4px] border border-white/25 bg-black/30 pl-[62px] pr-4 font-sans text-[15px] text-white outline-none transition-colors placeholder:text-white/55 focus:border-[#dca653] [color-scheme:dark]";
@@ -117,7 +112,7 @@ export default function BookingForm() {
         {/* ================================================= */}
         {/* LEFT - INTRO */}
         {/* ================================================= */}
-        <div>
+        <div data-reveal="left">
           <div className="mb-3 flex items-center gap-5">
             <span className="font-sans text-[14px] font-medium tracking-[0.2em] text-[#dca653]">
               BOOK APPOINTMENT
@@ -146,7 +141,7 @@ export default function BookingForm() {
         {/* ================================================= */}
         {/* RIGHT - FORM */}
         {/* ================================================= */}
-        <div className="rounded-[14px] border border-[#a8793b] bg-[#0f0d0b]/85 px-5 py-10 shadow-2xl backdrop-blur-sm sm:px-9 lg:self-start">
+        <div data-reveal="right" className="rounded-[14px] border border-[#a8793b] bg-[#0f0d0b]/85 px-5 py-10 shadow-2xl backdrop-blur-sm sm:px-9 lg:self-start">
           {/* Form Header */}
           <div className="flex items-center justify-center gap-4">
             <span className="h-px w-[60px] bg-[#8d6a3d] sm:w-[128px]" />
@@ -225,7 +220,7 @@ export default function BookingForm() {
                 icon={<LayoutGrid size={22} strokeWidth={1.5} />}
                 name="service"
                 placeholder="Service Type"
-                options={serviceItems.map((service) => service.title)}
+                options={services.map((service) => service.title)}
               />
 
               <Field icon={<CalendarDays size={22} strokeWidth={1.5} />}>
@@ -249,8 +244,8 @@ export default function BookingForm() {
               <SelectField
                 icon={<House size={22} strokeWidth={1.5} />}
                 name="location"
-                options={["Indoor", "Outdoor"]}
-                defaultValue="Indoor"
+                options={bookingLocations}
+                defaultValue={bookingLocations[0]}
               />
 
               <div className="sm:col-span-2">
@@ -258,7 +253,7 @@ export default function BookingForm() {
                   icon={<ImageIcon size={22} strokeWidth={1.5} />}
                   name="package"
                   placeholder="Select Photography Package"
-                  options={packages}
+                  options={bookingPackages}
                 />
               </div>
             </div>

@@ -1,0 +1,88 @@
+{
+  "mainNav": [
+    {
+      "name": "Home",
+      "href": "/"
+    },
+    {
+      "name": "About Us",
+      "href": "/aboutus"
+    },
+    {
+      "name": "Services",
+      "href": "/services"
+    },
+    {
+      "name": "Portfolio",
+      "href": "/portfolio"
+    },
+    {
+      "name": "Blog",
+      "href": "/blog"
+    },
+    {
+      "name": "Contact Us",
+      "href": "/contact"
+    }
+  ],
+  "bookingLink": {
+    "name": "Book a Shoot",
+    "href": "/book-a-shoot"
+  },
+  "footerQuickLinks": [
+    {
+      "name": "Home",
+      "href": "/"
+    },
+    {
+      "name": "About Us",
+      "href": "/aboutus"
+    },
+    {
+      "name": "Services",
+      "href": "/services"
+    },
+    {
+      "name": "Portfolio",
+      "href": "/portfolio"
+    },
+    {
+      "name": "FAQ",
+      "href": "/faq"
+    },
+    {
+      "name": "Blog",
+      "href": "/blog"
+    },
+    {
+      "name": "Contact Us",
+      "href": "/contact"
+    }
+  ],
+  "footerServices": [
+    {
+      "name": "Wedding Photography",
+      "href": "/services/wedding-photography"
+    },
+    {
+      "name": "Drone Cinematography",
+      "href": "/services/drone-cinematography"
+    },
+    {
+      "name": "Wedding Cinematography",
+      "href": "/services/wedding-cinematography"
+    },
+    {
+      "name": "Personal Portfolio Shoot",
+      "href": "/services/personal-portfolio"
+    },
+    {
+      "name": "Event Photography",
+      "href": "/services/event-photography"
+    },
+    {
+      "name": "Product Photography",
+      "href": "/services/product-photography"
+    }
+  ]
+}

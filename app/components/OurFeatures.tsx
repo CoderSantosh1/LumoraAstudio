@@ -2,35 +2,11 @@ import Image from "next/image";
 import Link from "next/link";
 import {
   Camera,
-  Lightbulb,
-  Trophy,
-  Gem,
   ArrowRight,
   CalendarDays,
 } from "lucide-react";
-
-const features = [
-  {
-    icon: Camera,
-    title: "20+ Years Experience",
-    description: "Decades of expertise in photography & videography.",
-  },
-  {
-    icon: Lightbulb,
-    title: "Creative Shoot Ideas",
-    description: "Unique and creative concepts for every occasion.",
-  },
-  {
-    icon: Trophy,
-    title: "Globally Awarded",
-    description: "Recognized for excellence in photography and filmmaking.",
-  },
-  {
-    icon: Gem,
-    title: "Best Quality Photos",
-    description: "High-quality, professionally edited images.",
-  },
-];
+import { features } from "@/data";
+import { icons } from "./icons";
 
 export default function OurFeatures() {
   return (
@@ -47,7 +23,7 @@ export default function OurFeatures() {
           {/* ================================================= */}
           {/* LEFT SIDE */}
           {/* ================================================= */}
-          <div className="relative z-20">
+          <div data-reveal="left" className="relative z-20">
 
             {/* Section Label */}
             <div className="mb-2 flex items-center gap-5">
@@ -75,7 +51,7 @@ export default function OurFeatures() {
             {/* Feature List */}
             <div className="mt-5 max-w-[410px]">
               {features.map((feature, index) => {
-                const Icon = feature.icon;
+                const Icon = icons[feature.icon];
 
                 return (
                   <div
@@ -118,7 +94,7 @@ export default function OurFeatures() {
           {/* ================================================= */}
           {/* RIGHT SIDE */}
           {/* ================================================= */}
-          <div className="relative mt-16 min-h-[570px] lg:mt-0">
+          <div data-reveal="right" className="relative mt-16 min-h-[570px] lg:mt-0">
 
             {/* Main Wedding Image */}
             <div className="absolute right-[4%] top-0 z-10 w-[72%]">

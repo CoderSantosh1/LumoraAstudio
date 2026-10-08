@@ -1,7 +1,8 @@
 import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
-import { portfolioItems, scriptFont } from "./siteData";
+import { portfolioItems } from "@/data";
+import { scriptFont, revealDelay } from "./siteData";
 
 export default function PortfolioGrid() {
   return (
@@ -17,7 +18,7 @@ export default function PortfolioGrid() {
         {/* ================================================= */}
         {/* HEADER */}
         {/* ================================================= */}
-        <div className="mx-auto max-w-[760px] text-center">
+        <div data-reveal="up" className="mx-auto max-w-[760px] text-center">
           <div className="flex items-center justify-center gap-6">
             <span className="h-px w-[55px] bg-[#b07d3a]" />
 
@@ -51,9 +52,11 @@ export default function PortfolioGrid() {
         {/* GRID */}
         {/* ================================================= */}
         <div className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-          {portfolioItems.map((item) => (
+          {portfolioItems.map((item, index) => (
             <Link
               key={item.slug}
+              data-reveal="up"
+              style={revealDelay(index % 3)}
               href={`/portfolio/${item.slug}`}
               className="group relative block h-[320px] overflow-hidden rounded-[4px] border border-[#5c4428] transition-colors duration-300 hover:border-[#dca653] lg:h-[335px]"
             >

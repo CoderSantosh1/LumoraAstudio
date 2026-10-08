@@ -1,62 +1,30 @@
+"use client";
+
 import Image from "next/image";
 import Link from "next/link";
+import { useState } from "react";
+import { ChevronLeft, ChevronRight } from "lucide-react";
+import { revealDelay } from "./siteData";
+import { services } from "@/data";
 
-const services = [
-  {
-    number: "01",
-    title: (
-      <>
-        Wedding
-        <br />
-        Photography
-      </>
-    ),
-    description:
-      "Beautifully capturing your special day with timeless moments and real emotions.",
-    image: "/Home/WeddingPhotography.png",
-  },
-  {
-    number: "02",
-    title: (
-      <>
-        Drone
-        <br />
-        Cinematography
-      </>
-    ),
-    description:
-      "Stunning aerial shots to make your events and stories look extraordinary.",
-    image: "/Home/DroneCinematography.png",
-  },
-  {
-    number: "03",
-    title: (
-      <>
-        Wedding
-        <br />
-        Cinematography
-      </>
-    ),
-    description:
-      "Cinematic films that beautifully tell the story of your most cherished moments.",
-    image: "/Home/WeddingCinematography.png",
-  },
-  {
-    number: "04",
-    title: (
-      <>
-        Personal
-        <br />
-        Portfolio Shoot
-      </>
-    ),
-    description:
-      "Professional portraits to showcase your personality and unique style.",
-    image: "/Home/PersonalPortfolioShoot.png",
-  },
-];
+/* The home page pages through four at a time; the services page shows all */
+const SERVICES_PER_PAGE = 4;
 
-export default function Services() {
+export default function Services({ showAll = false }: { showAll?: boolean }) {
+  const [page, setPage] = useState(1);
+  const totalPages = Math.ceil(services.length / SERVICES_PER_PAGE);
+
+  const visibleServices = showAll
+    ? services
+    : services.slice(
+        (page - 1) * SERVICES_PER_PAGE,
+        page * SERVICES_PER_PAGE,
+      );
+
+  const goToPage = (nextPage: number) => {
+    setPage(Math.min(Math.max(nextPage, 1), totalPages));
+  };
+
   return (
     <section className="relative overflow-hidden bg-[#0a0908] py-10 ">
       {/* Background Glow */}
@@ -64,7 +32,7 @@ export default function Services() {
 
       <div className="relative mx-auto max-w-[1400px] px-6 lg:px-14">
         {/* ================= HEADER ================= */}
-        <div className="mb-10 grid items-start gap-8 lg:grid-cols-[1fr_0.95fr]">
+        <div data-reveal="up" className="mb-10 grid items-start gap-8 lg:grid-cols-[1fr_0.95fr]">
           {/* Left */}
           <div>
             <div className="mb-1 flex items-center gap-5">
@@ -99,16 +67,18 @@ export default function Services() {
 
         {/* ================= CARDS ================= */}
         <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-          {services.map((service) => (
+          {visibleServices.map((service, index) => (
             <article
                 key={service.number}
+                data-reveal="up"
+                style={revealDelay(index % 4)}
                 className="group relative overflow-hidden rounded-[20px] border border-[#76552d] bg-[#11100e]"
             >
                 {/* IMAGE */}
                 <div className="relative h-[205px] overflow-hidden">
                 <Image
-                    src={service.image}
-                    alt="Photography service"
+                    src={service.cardImage}
+                    alt={service.title}
                     fill
                     sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
                     className="object-cover transition-transform duration-700 group-hover:scale-105"
@@ -134,12 +104,14 @@ export default function Services() {
 
                     {/* Title */}
                     <h3 className="font-serif text-[23px] leading-[1.02] text-white">
-                    {service.title}
+                    {service.titleLines[0]}
+                    <br />
+                    {service.titleLines[1]}
                     </h3>
 
                     {/* Forward Arrow */}
                     <Link
-                    href={`/services/${service.number}`}
+                    href={`/services/${service.slug}`}
                     aria-label={`View ${service.title}`}
                     className="mt-[-2px] flex h-[42px] w-[42px] shrink-0 items-center justify-center rounded-full border border-[#a8793b] text-[20px] text-[#dca653] transition-all duration-300 hover:bg-[#dca653] hover:text-black"
                     >
@@ -158,6 +130,53 @@ export default function Services() {
             </article>
             ))}
         </div>
+
+        {/* ================= PAGINATION (home page) ================= */}
+        {!showAll && totalPages > 1 && (
+          <nav
+            aria-label="Services pagination"
+            className="mt-8 flex items-center justify-center gap-3"
+          >
+            <button
+              type="button"
+              aria-label="Previous services"
+              onClick={() => goToPage(page - 1)}
+              disabled={page === 1}
+              className="flex h-[37px] w-[37px] items-center justify-center rounded-full border border-[#a8793b] text-[#e7b867] transition-colors hover:bg-[#dca653] hover:text-black disabled:opacity-40 disabled:hover:bg-transparent disabled:hover:text-[#e7b867]"
+            >
+              <ChevronLeft size={16} />
+            </button>
+
+            {Array.from({ length: totalPages }, (_, index) => index + 1).map(
+              (pageNumber) => (
+                <button
+                  key={pageNumber}
+                  type="button"
+                  aria-label={`Services page ${pageNumber}`}
+                  aria-current={pageNumber === page ? "page" : undefined}
+                  onClick={() => goToPage(pageNumber)}
+                  className={`flex h-[37px] w-[37px] items-center justify-center rounded-full font-serif text-[16px] transition-colors ${
+                    pageNumber === page
+                      ? "bg-[#f2b864] text-black"
+                      : "border border-white/15 text-white hover:border-[#dca653] hover:text-[#dca653]"
+                  }`}
+                >
+                  {pageNumber}
+                </button>
+              ),
+            )}
+
+            <button
+              type="button"
+              aria-label="Next services"
+              onClick={() => goToPage(page + 1)}
+              disabled={page === totalPages}
+              className="flex h-[37px] w-[37px] items-center justify-center rounded-full border border-[#a8793b] text-[#e7b867] transition-colors hover:bg-[#dca653] hover:text-black disabled:opacity-40 disabled:hover:bg-transparent disabled:hover:text-[#e7b867]"
+            >
+              <ChevronRight size={16} />
+            </button>
+          </nav>
+        )}
       </div>
     </section>
   );

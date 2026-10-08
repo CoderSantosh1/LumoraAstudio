@@ -13,7 +13,9 @@ import {
   Phone,
   UserRound,
 } from "lucide-react";
-import { contactDetails, scriptFont } from "./siteData";
+import { contactDetails, inquiryOptions, socialLinks } from "@/data";
+import type { SocialPlatform } from "@/types";
+import { scriptFont } from "./siteData";
 
 const contactInfo = [
   {
@@ -35,64 +37,41 @@ const contactInfo = [
   },
 ];
 
-const inquiryOptions = [
-  "General Inquiry",
-  "Book a Session",
-  "Pricing & Packages",
-  "Collaboration",
-  "Other",
-];
-
 const fieldClass =
   "w-full rounded-[4px] border border-[#6e5532] bg-transparent pl-[56px] pr-4 font-sans text-[14px] text-white outline-none transition-colors placeholder:text-white/60 focus:border-[#dca653]";
 
 /* Brand icons (lucide-react no longer ships brand icons) */
-const socialLinks: { label: string; icon: ReactNode }[] = [
-  {
-    label: "Facebook",
-    icon: (
-      <svg viewBox="0 0 24 24" className="h-[14px] w-[14px]" fill="currentColor" aria-hidden="true">
-        <path d="M9 8H6v4h3v12h5V12h3.642L18 8h-4V6.333C14 5.378 14.192 5 15.115 5H18V0h-3.808C10.596 0 9 1.583 9 4.615V8z" />
-      </svg>
-    ),
-  },
-  {
-    label: "Twitter",
-    icon: (
-      <svg viewBox="0 0 24 24" className="h-[15px] w-[15px]" fill="currentColor" aria-hidden="true">
-        <path d="M24 4.557a9.83 9.83 0 0 1-2.828.775 4.932 4.932 0 0 0 2.165-2.724 9.864 9.864 0 0 1-3.127 1.195 4.916 4.916 0 0 0-3.594-1.555c-3.179 0-5.515 2.966-4.797 6.045A13.978 13.978 0 0 1 1.671 3.149a4.93 4.93 0 0 0 1.523 6.574 4.903 4.903 0 0 1-2.229-.616c-.054 2.281 1.581 4.415 3.949 4.89a4.935 4.935 0 0 1-2.224.084 4.928 4.928 0 0 0 4.6 3.419A9.9 9.9 0 0 1 0 19.54a13.94 13.94 0 0 0 7.548 2.212c9.142 0 14.307-7.721 13.995-14.646A10.025 10.025 0 0 0 24 4.557z" />
-      </svg>
-    ),
-  },
-  {
-    label: "Instagram",
-    icon: (
-      <svg viewBox="0 0 24 24" className="h-[15px] w-[15px]" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true">
-        <rect x="3" y="3" width="18" height="18" rx="5" />
-        <circle cx="12" cy="12" r="4" />
-        <circle cx="17.5" cy="6.5" r="0.6" fill="currentColor" />
-      </svg>
-    ),
-  },
-  {
-    label: "Pinterest",
-    icon: (
-      <svg viewBox="0 0 24 24" className="h-[15px] w-[15px]" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" aria-hidden="true">
-        <path d="M8.5 22l3.2-13" />
-        <path d="M10.7 14.2c.5 1 1.5 1.5 2.6 1.5 2.7 0 4.5-2.4 4.5-5.3 0-2.9-2.4-4.9-5.5-4.9-3.5 0-5.6 2.4-5.6 5.2 0 1.1.4 2.1 1 2.6" />
-      </svg>
-    ),
-  },
-  {
-    label: "Dribbble",
-    icon: (
-      <svg viewBox="0 0 24 24" className="h-[15px] w-[15px]" fill="none" stroke="currentColor" strokeWidth="1.8" aria-hidden="true">
-        <circle cx="12" cy="12" r="10" />
-        <path d="M8.56 2.75c4.37 6 6 9.42 8 17.72M19.13 5.09c-3.5 4.18-8.55 5.38-16.88 5.18M21.75 12.84c-6.62-1.41-12.14 1-16.38 6.32" />
-      </svg>
-    ),
-  },
-];
+const socialIcons: Record<SocialPlatform, ReactNode> = {
+  facebook: (
+    <svg viewBox="0 0 24 24" className="h-[14px] w-[14px]" fill="currentColor" aria-hidden="true">
+      <path d="M9 8H6v4h3v12h5V12h3.642L18 8h-4V6.333C14 5.378 14.192 5 15.115 5H18V0h-3.808C10.596 0 9 1.583 9 4.615V8z" />
+    </svg>
+  ),
+  twitter: (
+    <svg viewBox="0 0 24 24" className="h-[15px] w-[15px]" fill="currentColor" aria-hidden="true">
+      <path d="M24 4.557a9.83 9.83 0 0 1-2.828.775 4.932 4.932 0 0 0 2.165-2.724 9.864 9.864 0 0 1-3.127 1.195 4.916 4.916 0 0 0-3.594-1.555c-3.179 0-5.515 2.966-4.797 6.045A13.978 13.978 0 0 1 1.671 3.149a4.93 4.93 0 0 0 1.523 6.574 4.903 4.903 0 0 1-2.229-.616c-.054 2.281 1.581 4.415 3.949 4.89a4.935 4.935 0 0 1-2.224.084 4.928 4.928 0 0 0 4.6 3.419A9.9 9.9 0 0 1 0 19.54a13.94 13.94 0 0 0 7.548 2.212c9.142 0 14.307-7.721 13.995-14.646A10.025 10.025 0 0 0 24 4.557z" />
+    </svg>
+  ),
+  instagram: (
+    <svg viewBox="0 0 24 24" className="h-[15px] w-[15px]" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true">
+      <rect x="3" y="3" width="18" height="18" rx="5" />
+      <circle cx="12" cy="12" r="4" />
+      <circle cx="17.5" cy="6.5" r="0.6" fill="currentColor" />
+    </svg>
+  ),
+  pinterest: (
+    <svg viewBox="0 0 24 24" className="h-[15px] w-[15px]" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" aria-hidden="true">
+      <path d="M8.5 22l3.2-13" />
+      <path d="M10.7 14.2c.5 1 1.5 1.5 2.6 1.5 2.7 0 4.5-2.4 4.5-5.3 0-2.9-2.4-4.9-5.5-4.9-3.5 0-5.6 2.4-5.6 5.2 0 1.1.4 2.1 1 2.6" />
+    </svg>
+  ),
+  dribbble: (
+    <svg viewBox="0 0 24 24" className="h-[15px] w-[15px]" fill="none" stroke="currentColor" strokeWidth="1.8" aria-hidden="true">
+      <circle cx="12" cy="12" r="10" />
+      <path d="M8.56 2.75c4.37 6 6 9.42 8 17.72M19.13 5.09c-3.5 4.18-8.55 5.38-16.88 5.18M21.75 12.84c-6.62-1.41-12.14 1-16.38 6.32" />
+    </svg>
+  ),
+};
 
 function Field({ icon, children }: { icon: ReactNode; children: ReactNode }) {
   return (
@@ -168,12 +147,12 @@ function InfoCard() {
 
         {socialLinks.map((social) => (
           <a
-            key={social.label}
-            href="#"
+            key={social.platform}
+            href={social.href}
             aria-label={social.label}
             className="flex h-[36px] w-[36px] items-center justify-center rounded-full border border-[#6e5532] text-[#f0b65f] transition-all duration-300 hover:border-[#dca653] hover:bg-[#dca653] hover:text-black"
           >
-            {social.icon}
+            {socialIcons[social.platform]}
           </a>
         ))}
       </div>
@@ -201,7 +180,7 @@ export default function ContactUs() {
           {/* ================================================= */}
 
           {/* Mobile / tablet: banner image with card below */}
-          <div className="md:hidden">
+          <div data-reveal="left" className="md:hidden">
             <div className="relative aspect-[674/213] overflow-hidden rounded-t-[4px]">
               <Image
                 src="/Contact/ContactPhotographerTop.png"
@@ -216,7 +195,7 @@ export default function ContactUs() {
           </div>
 
           {/* Desktop: card overlaid on the photo, as in the reference */}
-          <div className="relative hidden aspect-[674/634] w-full overflow-hidden rounded-[4px] md:block">
+          <div data-reveal="left" className="relative hidden aspect-[674/634] w-full overflow-hidden rounded-[4px] md:block">
             <Image
               src="/Contact/ContactPhotographer.png"
               alt="Photographer capturing a moment at golden hour"
@@ -233,7 +212,7 @@ export default function ContactUs() {
           {/* ================================================= */}
           {/* RIGHT - FORM */}
           {/* ================================================= */}
-          <div className="relative lg:pr-[10px] lg:pt-8">
+          <div data-reveal="right" className="relative lg:pr-[10px] lg:pt-8">
             <div className="flex items-center gap-5">
               <span className="font-sans text-[13px] tracking-[0.2em] text-[#dca653]">
                 CONTACT US
@@ -371,14 +350,18 @@ export default function ContactUs() {
       {/* ================================================= */}
       {/* MAP */}
       {/* ================================================= */}
-      <section className="relative h-[420px] w-full bg-[#0b0a09] lg:h-[640px]">
+      {/* Satellite + labels view, zoomed out to country level, as in the reference */}
+      <section className="relative h-[420px] w-full overflow-hidden bg-[#0b0a09] lg:h-[640px]">
         <iframe
           title={`Lumora Astudio location - ${contactDetails.mapQuery}`}
-          src={`https://maps.google.com/maps?q=${encodeURIComponent(contactDetails.mapQuery)}&t=h&z=14&output=embed`}
-          className="h-full w-full border-0"
+          src={`https://maps.google.com/maps?q=${encodeURIComponent(contactDetails.mapQuery)}&t=h&z=${contactDetails.mapZoom}&output=embed`}
+          className="h-full w-full border-0 [filter:brightness(0.82)_saturate(0.9)]"
           loading="lazy"
           referrerPolicy="no-referrer-when-downgrade"
         />
+
+        {/* Blend the top edge into the dark section above */}
+        <div className="pointer-events-none absolute inset-x-0 top-0 h-6 bg-gradient-to-b from-[#0b0a09]/70 to-transparent" />
       </section>
     </>
   );

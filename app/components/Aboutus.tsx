@@ -7,7 +7,7 @@ export default function Aboutus() {
       <div className="relative mx-auto grid max-w-[1400px] items-center gap-10 px-6 sm:px-10 lg:grid-cols-2 lg:gap-8 lg:px-16">
 
         {/* ================= LEFT CONTENT ================= */}
-        <div className="relative z-10 max-w-[610px]">
+        <div data-reveal="left" className="relative z-10 max-w-[610px]">
 
           {/* Section Label */}
           <div className="mb-7 flex items-center gap-5">
@@ -66,7 +66,7 @@ export default function Aboutus() {
         </div>
 
         {/* ================= RIGHT IMAGE ================= */}
-        <div className="relative min-h-[320px] sm:min-h-[380px] lg:min-h-[520px]">
+        <div data-reveal="right" className="relative min-h-[320px] sm:min-h-[380px] lg:min-h-[520px]">
           <div className="absolute left-0 top-1/2 aspect-[1680/920] w-full -translate-y-1/2 lg:left-[-288px] lg:w-[920px]">
             <Image
               src={AboutusImage}

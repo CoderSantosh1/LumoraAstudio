@@ -1,26 +1,9 @@
 "use client";
 
 import { ChevronLeft, ChevronRight, Quote, Star } from "lucide-react";
+import { testimonials } from "@/data";
+import type { Testimonial } from "@/types";
 
-const testimonials = [
-  {
-    name: "Priya Sharma",
-    location: "New Delhi",
-    text: "Absolutely loved the experience! The team was professional, creative and made us feel so comfortable throughout the shoot. The photos turned out beyond our expectations.",
-  },
-  {
-    name: "Rohit Mehta",
-    location: "Mumbai",
-    text: "Amazing creativity and attention to detail! They captured our special moments so beautifully. Highly recommend for anyone looking for professional photography.",
-  },
-  {
-    name: "Anjali Verma",
-    location: "Bengaluru",
-    text: "A wonderful team with great ideas and patience. The entire shoot was smooth and fun. The final photos were stunning and truly memorable!",
-  },
-];
-
-type Testimonial = (typeof testimonials)[number];
 type NavigationDirection = "left" | "right";
 
 export default function TestMonial() {
@@ -39,7 +22,7 @@ export default function TestMonial() {
         {/* ================================================= */}
         {/* HEADER */}
         {/* ================================================= */}
-        <div className="grid items-start gap-8 lg:grid-cols-2">
+        <div data-reveal="up" className="grid items-start gap-8 lg:grid-cols-2">
           {/* LEFT */}
           <div>
             {/* Label */}
@@ -75,7 +58,7 @@ export default function TestMonial() {
         {/* ================================================= */}
         {/* DESKTOP TESTIMONIAL CAROUSEL */}
         {/* ================================================= */}
-        <div className="mt-10 hidden items-center gap-3 lg:grid lg:grid-cols-[50px_minmax(0,1fr)_50px]">
+        <div data-reveal="up" className="mt-10 hidden items-center gap-3 lg:grid lg:grid-cols-[50px_minmax(0,1fr)_50px]">
           {/* ================= LEFT ARROW ================= */}
           <button
             type="button"
@@ -154,7 +137,7 @@ export default function TestMonial() {
         {/* ================================================= */}
         {/* TABLET */}
         {/* ================================================= */}
-        <div className="mt-10 hidden md:grid lg:hidden">
+        <div data-reveal="up" className="mt-10 hidden md:grid lg:hidden">
           <div className="grid grid-cols-2 gap-5">
             {testimonials.slice(0, 2).map((testimonial) => (
               <TestimonialCard
@@ -174,7 +157,7 @@ export default function TestMonial() {
         {/* ================================================= */}
         {/* MOBILE */}
         {/* ================================================= */}
-        <div className="mt-10 md:hidden">
+        <div data-reveal="up" className="mt-10 md:hidden">
           <TestimonialCard testimonial={testimonials[0]} />
 
           <div className="mt-7 flex justify-center gap-4">

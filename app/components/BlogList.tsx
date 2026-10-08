@@ -10,7 +10,8 @@ import {
   ChevronLeft,
   ChevronRight,
 } from "lucide-react";
-import { blogPosts, scriptFont } from "./siteData";
+import { blogPosts } from "@/data";
+import { scriptFont, revealDelay } from "./siteData";
 
 const POSTS_PER_PAGE = 8;
 
@@ -39,7 +40,7 @@ export default function BlogList() {
         {/* ================================================= */}
         {/* HEADER */}
         {/* ================================================= */}
-        <div className="grid items-start gap-8 lg:grid-cols-2">
+        <div data-reveal="up" className="grid items-start gap-8 lg:grid-cols-2">
           <div>
             <div className="mb-2 flex items-center gap-5">
               <span className="font-serif text-[15px] tracking-[0.08em] text-[#dca653]">
@@ -97,9 +98,11 @@ export default function BlogList() {
         {/* BLOG CARDS */}
         {/* ================================================= */}
         <div className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-          {visiblePosts.map((post) => (
+          {visiblePosts.map((post, index) => (
             <article
               key={post.slug}
+              data-reveal="up"
+              style={revealDelay(index % 4)}
               className="group relative overflow-hidden rounded-[6px] border border-[#b5853f] bg-[#100e0c] transition-all duration-500 hover:-translate-y-1 hover:border-[#dca653]"
             >
               {/* IMAGE */}

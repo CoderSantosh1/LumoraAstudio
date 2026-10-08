@@ -2,42 +2,17 @@
 
 import Image from "next/image";
 import { useState } from "react";
-import {
-  Building2,
-  CalendarDays,
-  Check,
-  ChevronLeft,
-  ChevronRight,
-  CircleUser,
-  Lightbulb,
-  MapPin,
-  Star,
-} from "lucide-react";
-import { scriptFont, type PortfolioItem } from "./siteData";
+import { Check, ChevronLeft, ChevronRight, Star } from "lucide-react";
+import { portfolioProject } from "@/data";
+import type { PortfolioItem } from "@/types";
+import { icons } from "./icons";
+import { scriptFont, revealDelay } from "./siteData";
 
-const projectInfo = [
-  { icon: CircleUser, label: "CLIENT NAME", value: "Elisa & Family" },
-  { icon: MapPin, label: "ADDRESS", value: "California, USA" },
-  { icon: Building2, label: "PLACE", value: "Riverside Nature Park" },
-  { icon: Lightbulb, label: "CONCEPT", value: "Outdoor Family" },
-  { icon: CalendarDays, label: "DATE", value: "25 Sep 2023" },
-];
-
-const concepts = [
-  "The talent at Lumora Astudio runs wide and deep. Across many markets, geographies.",
-  "Our team members are some of the finest professionals in the industry.",
-  "Organized to deliver the most specialized service possible and enriched by the diverse.",
-];
-
-const gallery = [1, 2, 3, 4, 5, 6].map(
-  (index) => `/PortfolioDetail/Gallery${index}.png`,
-);
-
-const bodyText =
-  "Lumora Astudio is a full-service photography company providing wedding, newborn, fashion & portfolio photography. Our portfolio of completed work includes highly acclaimed and award-winning projects for clients around the country & globally also.";
+const project = portfolioProject;
+const { bodyText, concepts, gallery } = project;
 
 export default function PortfolioDetail({ item }: { item: PortfolioItem }) {
-  const slides = ["/PortfolioDetail/Main.png", item.image, ...gallery.slice(0, 3)];
+  const slides = [project.coverImage, item.image, ...gallery.slice(0, 3)];
   const [activeSlide, setActiveSlide] = useState(0);
 
   const moveSlide = (direction: number) => {
@@ -53,7 +28,7 @@ export default function PortfolioDetail({ item }: { item: PortfolioItem }) {
           {/* ================================================= */}
           {/* LEFT - SLIDER + INTRO */}
           {/* ================================================= */}
-          <div className="min-w-0">
+          <div data-reveal="left" className="min-w-0">
             <div className="relative h-[300px] overflow-hidden rounded-[8px] border border-[#5c4428] sm:h-[400px] lg:h-[452px]">
               <div
                 className="flex h-full transition-transform duration-700 ease-in-out"
@@ -102,12 +77,12 @@ export default function PortfolioDetail({ item }: { item: PortfolioItem }) {
             </div>
 
             <h2 className="mt-1 flex flex-wrap items-baseline gap-x-5 font-serif text-[40px] font-semibold leading-tight text-white sm:text-[54px]">
-              Elisa &amp; Family
+              {project.client}
               <span
                 className="font-normal text-[#e3ad5c]"
                 style={scriptFont}
               >
-                Photography
+                {project.headingScript}
               </span>
             </h2>
 
@@ -119,7 +94,7 @@ export default function PortfolioDetail({ item }: { item: PortfolioItem }) {
           {/* ================================================= */}
           {/* RIGHT - PROJECT DETAILS */}
           {/* ================================================= */}
-          <aside className="self-start rounded-[10px] border border-[#76552d] bg-[#0f0e0c] px-5 pb-4 pt-4">
+          <aside data-reveal="right" className="self-start rounded-[10px] border border-[#76552d] bg-[#0f0e0c] px-5 pb-4 pt-4">
             <h3 className="flex items-baseline gap-2.5 font-sans text-[28px] font-semibold text-white">
               Project
               <span className="text-[34px] font-normal text-[#e3ad5c]" style={scriptFont}>
@@ -130,24 +105,28 @@ export default function PortfolioDetail({ item }: { item: PortfolioItem }) {
             <div className="mt-1 h-[3px] w-[54px] bg-[#e3ad5c]" />
 
             <dl className="mt-5 border-t border-white/[0.12]">
-              {projectInfo.map(({ icon: Icon, label, value }) => (
-                <div
-                  key={label}
-                  className="flex items-center gap-4 border-b border-white/[0.12] py-3"
-                >
-                  <span className="flex h-[30px] w-[30px] shrink-0 items-center justify-center rounded-full border border-[#e3ad5c] text-[#e3ad5c]">
-                    <Icon size={16} strokeWidth={1.6} />
-                  </span>
+              {project.info.map(({ icon, label, value }) => {
+                const Icon = icons[icon];
 
-                  <dt className="w-[128px] shrink-0 font-sans text-[14px] font-semibold text-white">
-                    {label}
-                  </dt>
+                return (
+                  <div
+                    key={label}
+                    className="flex items-center gap-4 border-b border-white/[0.12] py-3"
+                  >
+                    <span className="flex h-[30px] w-[30px] shrink-0 items-center justify-center rounded-full border border-[#e3ad5c] text-[#e3ad5c]">
+                      <Icon size={16} strokeWidth={1.6} />
+                    </span>
 
-                  <dd className="font-sans text-[14px] text-white/85">
-                    {value}
-                  </dd>
-                </div>
-              ))}
+                    <dt className="w-[128px] shrink-0 font-sans text-[14px] font-semibold text-white">
+                      {label}
+                    </dt>
+
+                    <dd className="font-sans text-[14px] text-white/85">
+                      {value}
+                    </dd>
+                  </div>
+                );
+              })}
 
               <div className="flex items-center gap-4 border-b border-white/[0.12] py-3">
                 <span className="flex h-[30px] w-[30px] shrink-0 items-center justify-center rounded-full border border-[#e3ad5c] text-[#e3ad5c]">
@@ -158,8 +137,8 @@ export default function PortfolioDetail({ item }: { item: PortfolioItem }) {
                   CLIENT RATING
                 </dt>
 
-                <dd className="flex gap-[3px]" aria-label="5 out of 5 stars">
-                  {[1, 2, 3, 4, 5].map((star) => (
+                <dd className="flex gap-[3px]" aria-label={`${project.rating} out of 5 stars`}>
+                  {Array.from({ length: project.rating }, (_, i) => i + 1).map((star) => (
                     <Star
                       key={star}
                       size={17}
@@ -174,10 +153,7 @@ export default function PortfolioDetail({ item }: { item: PortfolioItem }) {
 
             {/* Camera gear */}
             <div className="mt-6 grid grid-cols-2 divide-x divide-white/[0.15] pb-2">
-              {[
-                { brand: "SONY", model: "A7 III" },
-                { brand: "CANON", model: "EOS R6" },
-              ].map((gear) => (
+              {project.gear.map((gear) => (
                 <div key={gear.brand} className="py-2 text-center">
                   <p className="font-serif text-[34px] font-bold leading-none text-white">
                     {gear.brand}
@@ -231,6 +207,8 @@ export default function PortfolioDetail({ item }: { item: PortfolioItem }) {
           {gallery.map((image, index) => (
             <div
               key={image}
+              data-reveal="zoom"
+              style={revealDelay(index % 3)}
               className="group relative h-[200px] overflow-hidden rounded-[6px] border border-[#3a2d1d]"
             >
               <Image

@@ -2,7 +2,7 @@ import { Suspense } from "react";
 import { notFound } from "next/navigation";
 import PageHero from "@/app/components/PageHero";
 import PortfolioDetail from "@/app/components/PortfolioDetail";
-import { findPortfolioItem, portfolioItems } from "@/app/components/siteData";
+import { findPortfolioItem, portfolioItems } from "@/data";
 
 export function generateStaticParams() {
   return portfolioItems.map((item) => ({ slug: item.slug }));

@@ -3,59 +3,8 @@
 import Image from "next/image";
 import { useState } from "react";
 import { ChevronDown, MessageCircleQuestionMark } from "lucide-react";
+import { faqGroups } from "@/data";
 import { scriptFont } from "./siteData";
-
-const faqGroups = [
-  [
-    {
-      question: "How long have you been a photographer?",
-      answer:
-        "We have been working in the photography industry for over 10 years, capturing weddings, newborn, fashion and portfolio photography. Our experience allows us to create beautiful, high-quality images that tell your unique story.",
-    },
-    {
-      question: "Do you edit all of your photographs?",
-      answer:
-        "Yes. Every image we deliver is carefully selected and professionally edited for colour, light and tone so your gallery feels consistent and timeless.",
-    },
-    {
-      question: "Do you work with a second photographer?",
-      answer:
-        "For weddings and large events we usually work with a second photographer, so no important moment or angle is missed.",
-    },
-    {
-      question: "Do you have an assistant?",
-      answer:
-        "Yes, an assistant joins us on most shoots to help with lighting, equipment and keeping everything running smoothly.",
-    },
-    {
-      question: "Do you also provide video services?",
-      answer:
-        "We do. Our team offers wedding cinematography, event films and drone coverage alongside photography.",
-    },
-    {
-      question: "Do you have past clients we can speak to as references?",
-      answer:
-        "Of course. We are happy to connect you with past clients who can share their experience of working with us.",
-    },
-  ],
-  [
-    {
-      question: "Are our digital files watermarked?",
-      answer:
-        "No. The final digital files you receive are high resolution and free from any watermark.",
-    },
-    {
-      question: "How many pictures will we receive?",
-      answer:
-        "It depends on the package and length of the shoot. A full-day wedding typically includes several hundred edited images.",
-    },
-    {
-      question: "How long does it take before we receive our products and photographs?",
-      answer:
-        "Sneak peeks are shared within a week. The complete edited gallery is usually delivered within 3 to 4 weeks.",
-    },
-  ],
-];
 
 export default function Faq() {
   const [openItem, setOpenItem] = useState<string | null>("0-0");
@@ -88,7 +37,7 @@ export default function Faq() {
         {/* ================================================= */}
         {/* LEFT - QUESTIONS */}
         {/* ================================================= */}
-        <div className="min-w-0">
+        <div data-reveal="left" className="min-w-0">
           <div className="flex items-center gap-4">
             <span className="font-sans text-[13px] tracking-[0.1em] text-[#dca653]">
               FAQ
@@ -185,7 +134,7 @@ export default function Faq() {
         {/* ================================================= */}
         {/* RIGHT - INFO CARD */}
         {/* ================================================= */}
-        <aside className="self-end overflow-hidden rounded-[6px] border border-[#5c4428] bg-[#0e0d0b]/90 lg:mb-[-10px]">
+        <aside data-reveal="right" className="self-end overflow-hidden rounded-[6px] border border-[#5c4428] bg-[#0e0d0b]/90 lg:mb-[-10px]">
           <div className="relative h-[205px]">
             <Image
               src="/Faq/FaqCamera.png"

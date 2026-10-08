@@ -1,0 +1,106 @@
+{
+  "items": [
+    {
+      "slug": "studio-photography",
+      "title": "Studio Photography",
+      "image": "/Portfolio/Studio.png"
+    },
+    {
+      "slug": "wedding-photography",
+      "title": "Wedding Photography",
+      "image": "/Portfolio/Wedding.png"
+    },
+    {
+      "slug": "newborn-photography",
+      "title": "Newborn Photography",
+      "image": "/Portfolio/Newborn.png"
+    },
+    {
+      "slug": "indoor-photography",
+      "title": "Indoor Photography",
+      "image": "/Portfolio/Indoor.png"
+    },
+    {
+      "slug": "outdoor-photography",
+      "title": "Outdoor Photography",
+      "image": "/Portfolio/Outdoor.png"
+    },
+    {
+      "slug": "fashion-photography",
+      "title": "Fashion Photography",
+      "image": "/Portfolio/Fashion.png"
+    },
+    {
+      "slug": "lifestyle-photography",
+      "title": "Lifestyle Photography",
+      "image": "/Portfolio/Lifestyle.png"
+    },
+    {
+      "slug": "product-photography",
+      "title": "Product Photography",
+      "image": "/Portfolio/Product.png"
+    },
+    {
+      "slug": "event-photography",
+      "title": "Event Photography",
+      "image": "/Portfolio/Event.png"
+    }
+  ],
+  "project": {
+    "client": "Elisa & Family",
+    "headingScript": "Photography",
+    "coverImage": "/PortfolioDetail/Main.png",
+    "info": [
+      {
+        "icon": "circle-user",
+        "label": "CLIENT NAME",
+        "value": "Elisa & Family"
+      },
+      {
+        "icon": "map-pin",
+        "label": "ADDRESS",
+        "value": "California, USA"
+      },
+      {
+        "icon": "building",
+        "label": "PLACE",
+        "value": "Riverside Nature Park"
+      },
+      {
+        "icon": "lightbulb",
+        "label": "CONCEPT",
+        "value": "Outdoor Family"
+      },
+      {
+        "icon": "calendar",
+        "label": "DATE",
+        "value": "25 Sep 2023"
+      }
+    ],
+    "rating": 5,
+    "gear": [
+      {
+        "brand": "SONY",
+        "model": "A7 III"
+      },
+      {
+        "brand": "CANON",
+        "model": "EOS R6"
+      }
+    ],
+    "bodyText": "Lumora Astudio is a full-service photography company providing wedding, newborn, fashion & portfolio photography. Our portfolio of completed work includes highly acclaimed and award-winning projects for clients around the country & globally also.",
+    "concepts": [
+      "The talent at Lumora Astudio runs wide and deep. Across many markets, geographies.",
+      "Our team members are some of the finest professionals in the industry.",
+      "Organized to deliver the most specialized service possible and enriched by the diverse."
+    ],
+    "gallery": [
+      "/PortfolioDetail/Gallery1.png",
+      "/PortfolioDetail/Gallery2.png",
+      "/PortfolioDetail/Gallery3.png",
+      "/PortfolioDetail/Gallery4.png",
+      "/PortfolioDetail/Gallery5.png",
+      "/PortfolioDetail/Gallery6.png"
+    ]
+  }
+}

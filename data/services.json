@@ -1,0 +1,136 @@
+{
+  "services": [
+    {
+      "slug": "wedding-photography",
+      "number": "01",
+      "title": "Wedding Photography",
+      "titleLines": [
+        "Wedding",
+        "Photography"
+      ],
+      "description": "Beautifully capturing your special day with timeless moments and real emotions.",
+      "shortDescription": "Beautifully capturing your special day with timeless memories.",
+      "cardImage": "/Home/WeddingPhotography.png",
+      "image": "/Home/WeddingPhotography.png",
+      "thumb": "/ServiceDetail/WeddingThumb.png"
+    },
+    {
+      "slug": "drone-cinematography",
+      "number": "02",
+      "title": "Drone Cinematography",
+      "titleLines": [
+        "Drone",
+        "Cinematography"
+      ],
+      "description": "Stunning aerial shots to make your events and stories look extraordinary.",
+      "shortDescription": "Stunning aerial shots to make your events look extraordinary.",
+      "cardImage": "/Home/DroneCinematography.png",
+      "image": "/Home/DroneCinematography.png",
+      "thumb": "/Home/DroneCinematography.png"
+    },
+    {
+      "slug": "wedding-cinematography",
+      "number": "03",
+      "title": "Wedding Cinematography",
+      "titleLines": [
+        "Wedding",
+        "Cinematography"
+      ],
+      "description": "Cinematic films that beautifully tell the story of your most cherished moments.",
+      "shortDescription": "Cinematic films that tell the story of your cherished moments.",
+      "cardImage": "/Home/WeddingCinematography.png",
+      "image": "/Home/WeddingCinematography.png",
+      "thumb": "/Home/WeddingCinematography.png"
+    },
+    {
+      "slug": "personal-portfolio",
+      "number": "04",
+      "title": "Personal Portfolio Shoot",
+      "titleLines": [
+        "Personal",
+        "Portfolio Shoot"
+      ],
+      "description": "Professional portraits to showcase your personality and unique style.",
+      "shortDescription": "Professional portraits to showcase your personality and unique style.",
+      "cardImage": "/Home/PersonalPortfolioShoot.png",
+      "image": "/Home/PersonalPortfolioShoot.png",
+      "thumb": "/Home/PersonalPortfolioShoot.png"
+    },
+    {
+      "slug": "studio-photography",
+      "number": "05",
+      "title": "Studio Photography",
+      "titleLines": [
+        "Studio",
+        "Photography"
+      ],
+      "description": "Professional studio sessions with perfect lighting, styling and creative setups.",
+      "shortDescription": "Professional studio sessions with perfect lighting and style.",
+      "cardImage": "/Portfolio/Studio.png",
+      "image": "/ServiceDetail/StudioPhotography.png",
+      "thumb": "/Portfolio/Studio.png"
+    },
+    {
+      "slug": "event-photography",
+      "number": "06",
+      "title": "Event Photography",
+      "titleLines": [
+        "Event",
+        "Photography"
+      ],
+      "description": "Covering all your important events with creativity and attention to detail.",
+      "shortDescription": "Covering all your important events with creativity.",
+      "cardImage": "/Portfolio/Event.png",
+      "image": "/Portfolio/Event.png",
+      "thumb": "/ServiceDetail/EventThumb.png"
+    },
+    {
+      "slug": "product-photography",
+      "number": "07",
+      "title": "Product Photography",
+      "titleLines": [
+        "Product",
+        "Photography"
+      ],
+      "description": "High-quality product shots that make your brand and products stand out.",
+      "shortDescription": "High-quality product shots to make your brand stand out.",
+      "cardImage": "/Portfolio/Product.png",
+      "image": "/Portfolio/Product.png",
+      "thumb": "/ServiceDetail/ProductThumb.png"
+    },
+    {
+      "slug": "portrait-photography",
+      "number": "08",
+      "title": "Portrait Photography",
+      "titleLines": [
+        "Portrait",
+        "Photography"
+      ],
+      "description": "Creative and professional portraits that capture your true character.",
+      "shortDescription": "Creative and professional portraits for every occasion.",
+      "cardImage": "/Portfolio/Indoor.png",
+      "image": "/Portfolio/Indoor.png",
+      "thumb": "/ServiceDetail/PortraitThumb.png"
+    }
+  ],
+  "sidebarOrder": [
+    "wedding-photography",
+    "portrait-photography",
+    "product-photography",
+    "event-photography",
+    "studio-photography",
+    "drone-cinematography",
+    "wedding-cinematography",
+    "personal-portfolio"
+  ],
+  "detailContent": {
+    "intro": "The talent at Lumora Astudio runs wide and deep. Across many markets, geographies & typologies, our team members are some of the finest professionals in the industry wide and deep. Across many markets, geographies and typologies, our team members are some of the finest.",
+    "stepsIntro": "The talent at Lumora Astudio runs wide and deep. Across many markets, geographies & typologies, our team members are some of the finest professionals in the industry wide and deep.",
+    "steps": [
+      "The talent at Lumora Astudio runs wide and deep. Across many markets, geographies",
+      "Our team members are some of the finest professionals in the industry",
+      "Organized to deliver the most specialized service possible and enriched by the geographies and typologies, our team members are some of the finest."
+    ],
+    "outro": "The talent at Lumora Astudio runs wide and deep. Across many markets, geographies & typologies, our team members are some of the finest professionals in the industry wide and deep. Across many markets, geographies and typologies, our team members are some of the finest."
+  }
+}

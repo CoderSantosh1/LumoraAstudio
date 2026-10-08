@@ -5,13 +5,9 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
+import { heroSlides } from "@/data";
 
-const slides = [
-  "/Home/HeroImage.png",
-  "/Home/HeroImage.png",
-  "/Home/HeroImage.png",
-  "/Home/HeroImage.png",
-];
+const slides = heroSlides;
 
 export default function Hero() {
   const [activeSlide, setActiveSlide] = useState(0);
@@ -73,7 +69,7 @@ export default function Hero() {
 
       {/* Content */}
       <div className="relative z-10 mx-auto flex min-h-[max(100svh,640px)] max-w-[1400px] items-center px-6 pt-20 lg:px-16">
-        <div className="max-w-[740px]">
+        <div data-reveal="left" className="max-w-[740px]">
 
           {/* Small Heading */}
           <div className="mb-5 flex items-center gap-4">
