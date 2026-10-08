@@ -1,12 +1,18 @@
 import Image from "next/image";
 
-export default function PageHero({ title }: { title: string }) {
+export default function PageHero({
+  title,
+  image = "/About/HeroImage.png",
+}: {
+  title: string;
+  image?: string;
+}) {
   return (
     <section className="relative h-[340px] w-full overflow-hidden lg:h-[380px]">
       {/* Background */}
       <div className="absolute inset-0">
         <Image
-          src="/About/HeroImage.png"
+          src={image}
           alt={`Lumora Astudio ${title}`}
           fill
           priority

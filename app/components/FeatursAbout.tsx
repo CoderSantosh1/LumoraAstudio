@@ -2,15 +2,16 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import {
-  Camera,
-  ArrowRight,
-  CalendarDays,
-} from "lucide-react";
-import { features } from "@/data";
+import { ArrowRight } from "lucide-react";
+import type { WhyChooseUsVariant } from "@/types";
 import { icons } from "./icons";
 
-export default function OurFeatures() {
+/* Positions of the two stat cards in the image collage */
+const statPositions = ["right-[30%]", "right-[3%]"];
+
+export default function FeatursAbout({ data }: { data: WhyChooseUsVariant }) {
+  const { features, infoCard } = data;
+
   return (
     <section className="relative overflow-hidden bg-[#0b0a09] py-16 lg:min-h-[680px] lg:py-12">
       {/* ================================================= */}
@@ -47,8 +48,8 @@ export default function OurFeatures() {
             <div className="absolute left-[10%] top-0 z-10 w-[72%] sm:left-[10%] sm:w-[72%]">
               <div className="relative aspect-[1/1.02] overflow-hidden border border-[#c39450]">
                 <Image
-                  src="/Home/WeddingPhotography.png"
-                  alt="Wedding photography"
+                  src={data.mainImage.src}
+                  alt={data.mainImage.alt}
                   fill
                   priority
                   sizes="(max-width: 1024px) 70vw, 40vw"
@@ -64,8 +65,8 @@ export default function OurFeatures() {
             <div className="absolute bottom-[15px] left-[5%] z-30 w-[35%] sm:left-[5%] sm:w-[35%]">
               <div className="relative aspect-[1.3/0.95] overflow-hidden border border-[#dca653]">
                 <Image
-                  src="/Home/CanonDSLR.png"
-                  alt="Professional camera"
+                  src={data.smallImage.src}
+                  alt={data.smallImage.alt}
                   fill
                   sizes="350px"
                   className="object-cover"
@@ -80,44 +81,41 @@ export default function OurFeatures() {
             <div className="absolute bottom-[58px] right-[12%] z-0 h-[85px] w-[70px] bg-[#dca653] sm:right-[13%] sm:w-[90px]" />
 
             {/* ================================================= */}
-            {/* 50+ STAT */}
+            {/* STATS (50+ / 300+) */}
             {/* ================================================= */}
 
-            <div className="absolute bottom-[5px] right-[30%] z-40 flex h-[125px] w-[145px] flex-col items-center justify-center border border-[#a8793b] bg-[#0e0d0c] sm:h-[135px] sm:w-[155px]">
-              <Camera
-                size={23}
-                strokeWidth={1.5}
-                className="mb-1 text-[#dca653]"
-              />
+            {data.stats.map((stat, index) => {
+              const Icon = icons[stat.icon];
 
-              <span className="font-serif text-[36px] leading-none text-white">
-                50+
-              </span>
+              return (
+                <div
+                  key={stat.label}
+                  className={`absolute bottom-[5px] z-40 flex h-[125px] w-[145px] flex-col items-center justify-center border sm:h-[135px] sm:w-[155px] ${statPositions[index] ?? ""} ${
+                    stat.highlight
+                      ? "border-[#dca653] bg-[#e5b96d]"
+                      : "border-[#a8793b] bg-[#0e0d0c]"
+                  }`}
+                >
+                  <Icon
+                    size={23}
+                    strokeWidth={1.5}
+                    className={`mb-1 ${stat.highlight ? "text-black" : "text-[#dca653]"}`}
+                  />
 
-              <span className="mt-1 text-[12px] text-white/60">
-                Photographers
-              </span>
-            </div>
+                  <span
+                    className={`font-serif text-[36px] leading-none ${stat.highlight ? "text-black" : "text-white"}`}
+                  >
+                    {stat.value}
+                  </span>
 
-            {/* ================================================= */}
-            {/* 300+ STAT */}
-            {/* ================================================= */}
-
-            <div className="absolute bottom-[5px] right-[3%] z-40 flex h-[125px] w-[145px] flex-col items-center justify-center border border-[#dca653] bg-[#e5b96d] sm:h-[135px] sm:w-[155px]">
-              <CalendarDays
-                size={23}
-                strokeWidth={1.5}
-                className="mb-1 text-black"
-              />
-
-              <span className="font-serif text-[36px] leading-none text-black">
-                300+
-              </span>
-
-              <span className="mt-1 text-[12px] text-black/70">
-                Events Covered
-              </span>
-            </div>
+                  <span
+                    className={`mt-1 text-[12px] ${stat.highlight ? "text-black/70" : "text-white/60"}`}
+                  >
+                    {stat.label}
+                  </span>
+                </div>
+              );
+            })}
           </div>
 
           {/* ================================================= */}
@@ -129,7 +127,7 @@ export default function OurFeatures() {
             {/* Section Label */}
             <div className="mb-2 flex items-center gap-5">
               <span className="font-sans text-[12px] font-medium tracking-[0.22em] text-[#dca653]">
-                OUR FEATURES
+                {data.subtitle}
               </span>
 
               <span className="h-px w-[115px] bg-[#805e35]" />
@@ -137,16 +135,15 @@ export default function OurFeatures() {
 
             {/* Heading */}
             <h2 className="font-serif text-[48px] leading-[0.95] text-white sm:text-[58px] lg:text-[60px]">
-              Why{" "}
+              {data.title1}{" "}
               <span className="font-serif font-light italic text-[#dca653]">
-                Choose Us
+                {data.titleScript}
               </span>
             </h2>
 
             {/* Description */}
             <p className="mt-5 max-w-[540px] font-sans text-[15px] leading-6 text-white/70">
-              At Lumora Astudio, we turn your special moments into timeless
-              visual stories with creativity, passion and expertise.
+              {data.description}
             </p>
 
             {/* ================================================= */}
@@ -199,29 +196,26 @@ export default function OurFeatures() {
             <div className="absolute -right-[15px] top-[165px] z-50 hidden w-[235px] border border-[#9a713c] bg-[#0d0c0b] px-6 py-6 shadow-2xl xl:block">
 
               <p className="text-[10px] tracking-[0.18em] text-[#dca653]">
-                LUMORA ASTUDIO
+                {infoCard.subtitle}
               </p>
 
               <h3 className="mt-3 font-serif text-[24px] leading-[1.05] text-white">
-                Capturing More
+                {infoCard.titleLines[0]}
                 <br />
-                Than Just Photos
+                {infoCard.titleLines[1]}
               </h3>
 
               <div className="my-4 h-[2px] w-[34px] bg-[#dca653]" />
 
               <p className="font-sans text-[12px] leading-[1.6] text-white/55">
-                Lumora Astudio has over 20 years of experience in photography &
-                videography, which makes us the pioneers in this profession.
-                We are having so much fun doing this, because your happiness is
-                our inspiration.
+                {infoCard.description}
               </p>
 
               <Link
-                href="/about"
+                href={infoCard.button.url}
                 className="mt-4 inline-flex items-center gap-2 text-[12px] font-medium text-[#dca653] transition hover:text-white"
               >
-                More About
+                {infoCard.button.text}
                 <ArrowRight size={14} />
               </Link>
             </div>

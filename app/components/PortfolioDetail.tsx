@@ -3,15 +3,19 @@
 import Image from "next/image";
 import { useState } from "react";
 import { Check, ChevronLeft, ChevronRight, Star } from "lucide-react";
-import { portfolioProject } from "@/data";
-import type { PortfolioItem } from "@/types";
+import type { PortfolioDetailVariant, PortfolioItem } from "@/types";
 import { icons } from "./icons";
 import { scriptFont, revealDelay } from "./siteData";
 
-const project = portfolioProject;
-const { bodyText, concepts, gallery } = project;
-
-export default function PortfolioDetail({ item }: { item: PortfolioItem }) {
+export default function PortfolioDetail({
+  data,
+  item,
+}: {
+  data: PortfolioDetailVariant;
+  item: PortfolioItem;
+}) {
+  const project = data.project;
+  const { bodyText, concepts, gallery } = project;
   const slides = [project.coverImage, item.image, ...gallery.slice(0, 3)];
   const [activeSlide, setActiveSlide] = useState(0);
 
@@ -96,9 +100,9 @@ export default function PortfolioDetail({ item }: { item: PortfolioItem }) {
           {/* ================================================= */}
           <aside data-reveal="right" className="self-start rounded-[10px] border border-[#76552d] bg-[#0f0e0c] px-5 pb-4 pt-4">
             <h3 className="flex items-baseline gap-2.5 font-sans text-[28px] font-semibold text-white">
-              Project
+              {data.detailsTitle1}
               <span className="text-[34px] font-normal text-[#e3ad5c]" style={scriptFont}>
-                Details
+                {data.detailsTitle2}
               </span>
             </h3>
 
@@ -134,7 +138,7 @@ export default function PortfolioDetail({ item }: { item: PortfolioItem }) {
                 </span>
 
                 <dt className="w-[128px] shrink-0 font-sans text-[14px] font-semibold text-white">
-                  CLIENT RATING
+                  {data.ratingLabel}
                 </dt>
 
                 <dd className="flex gap-[3px]" aria-label={`${project.rating} out of 5 stars`}>
@@ -171,7 +175,7 @@ export default function PortfolioDetail({ item }: { item: PortfolioItem }) {
         {/* PROJECT CONCEPT */}
         {/* ================================================= */}
         <h3 className="mt-10 font-sans text-[19px] font-semibold tracking-[0.06em] text-white">
-          PROJECT CONCEPT
+          {data.conceptTitle}
         </h3>
 
         <div className="mt-2 h-[3px] w-[54px] bg-[#e3ad5c]" />
@@ -198,7 +202,7 @@ export default function PortfolioDetail({ item }: { item: PortfolioItem }) {
         {/* PROJECT GALLERY */}
         {/* ================================================= */}
         <h3 className="mt-10 font-sans text-[19px] font-semibold tracking-[0.06em] text-white">
-          PROJECT GALLERY
+          {data.galleryTitle}
         </h3>
 
         <div className="mt-2 h-[3px] w-[54px] bg-[#e3ad5c]" />

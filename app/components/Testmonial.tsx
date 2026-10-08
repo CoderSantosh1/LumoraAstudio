@@ -1,12 +1,13 @@
 "use client";
 
 import { ChevronLeft, ChevronRight, Quote, Star } from "lucide-react";
-import { testimonials } from "@/data";
-import type { Testimonial } from "@/types";
+import type { Testimonial, TestimonialsVariant } from "@/types";
 
 type NavigationDirection = "left" | "right";
 
-export default function TestMonial() {
+export default function TestMonial({ data }: { data: TestimonialsVariant }) {
+  const testimonials = data.testimonials;
+
   return (
     <section className="relative overflow-hidden bg-[#0b0a09] py-20 lg:py-24">
       {/* ================= BACKGROUND ================= */}
@@ -28,7 +29,7 @@ export default function TestMonial() {
             {/* Label */}
             <div className="mb-3 flex items-center gap-5">
               <span className="font-sans text-[12px] font-medium tracking-[0.25em] text-[#dca653]">
-                TESTIMONIALS
+                {data.subtitle}
               </span>
 
               <span className="h-px w-[70px] bg-[#806039]" />
@@ -36,21 +37,20 @@ export default function TestMonial() {
 
             {/* Heading */}
             <h2 className="font-serif text-[46px] leading-[0.98] text-white sm:text-[52px]">
-              What Our Clients
+              {data.title1}
             </h2>
 
             <h3 className="mt-1 font-serif text-[45px] italic leading-none text-[#dca653] sm:text-[50px]">
-              Say About Us
+              {data.titleScript}
             </h3>
           </div>
 
           {/* RIGHT DESCRIPTION */}
           <div className="lg:pt-12">
             <p className="max-w-[560px] font-sans text-[15px] leading-6 text-white/70">
-              We are honored to be a part of so many beautiful stories.
+              {data.description[0]}
               <br />
-              Here&apos;s what our clients have to say about their experience
-              with us.
+              {data.description[1]}
             </p>
           </div>
         </div>
@@ -72,7 +72,7 @@ export default function TestMonial() {
           <div className="grid min-w-0 grid-cols-3 gap-5">
             {testimonials.map((testimonial) => (
               <article
-                key={testimonial.name}
+                key={testimonial.id}
                 className="group relative min-h-[265px] overflow-hidden rounded-[7px] border border-[#684e2e] bg-[#0e0d0b] transition-all duration-300 hover:border-[#b17c35]"
               >
                 {/* SINGLE INNER CONTAINER */}
@@ -141,7 +141,7 @@ export default function TestMonial() {
           <div className="grid grid-cols-2 gap-5">
             {testimonials.slice(0, 2).map((testimonial) => (
               <TestimonialCard
-                key={testimonial.name}
+                key={testimonial.id}
                 testimonial={testimonial}
               />
             ))}

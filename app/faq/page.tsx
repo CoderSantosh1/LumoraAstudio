@@ -1,11 +1,6 @@
-import PageHero from "@/app/components/PageHero";
-import Faq from "@/app/components/Faq";
+import PageSections from "@/app/components/PageSections";
 
+/* Sections come from data/category.json -> templateComponents.pages.faq */
 export default function FaqPage() {
-  return (
-    <>
-      <PageHero title="Faq" />
-      <Faq />
-    </>
-  );
+  return <PageSections page="faq" />;
 }

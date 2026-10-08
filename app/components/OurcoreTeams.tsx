@@ -3,14 +3,16 @@
 import Image from "next/image";
 import Link from "next/link";
 import { revealDelay } from "./siteData";
-import { teamMembers } from "@/data";
+import type { TeamVariant } from "@/types";
 import {
   ArrowLeft,
   ArrowRight,
   Globe,
 } from "lucide-react";
 
-export default function OurcoreTeams() {
+export default function OurcoreTeams({ data: team }: { data: TeamVariant }) {
+  const teamMembers = team.members;
+
   return (
     <section className="relative overflow-hidden bg-[#0b0a09] py-16 lg:py-20">
       {/* ================= BACKGROUND ================= */}
@@ -31,30 +33,29 @@ export default function OurcoreTeams() {
           <div>
             <div className="mb-2 flex items-center gap-5">
               <span className="font-sans text-[12px] font-medium tracking-[0.22em] text-[#dca653]">
-                OUR TEAM
+                {team.subtitle}
               </span>
 
               <span className="h-px w-[125px] bg-[#806039]" />
             </div>
 
             <h2 className="font-serif text-[45px] leading-[0.98] text-white sm:text-[55px] lg:text-[58px]">
-              Our Core Team of
+              {team.title1}
             </h2>
 
             <h3 className="mt-1 font-serif text-[45px] italic leading-none text-[#dca653] sm:text-[52px] lg:text-[55px]">
-              Photographers
+              {team.titleScript}
             </h3>
           </div>
 
           {/* RIGHT DESCRIPTION + ARROWS */}
           <div className="flex items-start justify-between gap-6 lg:pt-8">
             <p className="max-w-[570px] font-sans text-[14px] leading-6 text-white/65 sm:text-[15px]">
-              We&apos;re deeply passionate about{" "}
+              {team.descriptionLead}{" "}
               <strong className="font-semibold text-white">
-                capturing your lovely memories
+                {team.descriptionHighlight}
               </strong>{" "}
-              in cameras and convey your love for every moment of life as a
-              whole.
+              {team.descriptionEnd}
             </p>
 
             {/* Desktop arrows */}
@@ -83,7 +84,7 @@ export default function OurcoreTeams() {
         <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-5">
           {teamMembers.map((member, index) => (
             <article
-              key={member.name}
+              key={member.id}
               data-reveal="up"
               style={revealDelay(index)}
               className="group relative overflow-hidden border border-[#76552d] bg-[#0e0d0b] transition-all duration-500 hover:-translate-y-1 hover:border-[#dca653]"

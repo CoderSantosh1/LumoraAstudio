@@ -1,11 +1,6 @@
-import PageHero from "@/app/components/PageHero";
-import BlogList from "@/app/components/BlogList";
+import PageSections from "@/app/components/PageSections";
 
+/* Sections come from data/category.json -> templateComponents.pages.blog */
 export default function Blog() {
-  return (
-    <>
-      <PageHero title="Blog" />
-      <BlogList />
-    </>
-  );
+  return <PageSections page="blog" />;
 }

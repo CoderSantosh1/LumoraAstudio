@@ -1,11 +1,6 @@
-import PageHero from "@/app/components/PageHero";
-import PortfolioGrid from "@/app/components/PortfolioGrid";
+import PageSections from "@/app/components/PageSections";
 
+/* Sections come from data/category.json -> templateComponents.pages.portfolio */
 export default function Portfolio() {
-  return (
-    <>
-      <PageHero title="Portfolio" />
-      <PortfolioGrid />
-    </>
-  );
+  return <PageSections page="portfolio" />;
 }

@@ -1,49 +1,88 @@
 /* ================================================= */
-/* TYPED ACCESS TO THE SITE'S STATIC DATA */
-/* Edit the JSON files in this folder to change site content. */
+/* TYPED ACCESS TO data/category.json */
+/* Edit category.json to change site content. */
 /* ================================================= */
 
 import type {
-  BlogData,
-  BookingData,
-  ContactData,
-  FaqData,
-  FeaturesData,
-  HeroData,
-  NavigationData,
-  PortfolioData,
-  ServicesData,
-  TeamData,
-  TestimonialsData,
+  Breadcrumb,
+  CategorySections,
+  PageKey,
+  SectionName,
+  SiteData,
 } from "@/types";
 
-import blogJson from "./blog.json";
-import bookingJson from "./booking.json";
-import contactJson from "./contact.json";
-import faqJson from "./faq.json";
-import featuresJson from "./features.json";
-import heroJson from "./hero.json";
-import navigationJson from "./navigation.json";
-import portfolioJson from "./portfolio.json";
-import servicesJson from "./services.json";
-import teamJson from "./team.json";
-import testimonialsJson from "./testimonials.json";
+import categoryJson from "./category.json";
 
-/* ================= NAVIGATION & CONTACT ================= */
+const site = categoryJson as SiteData;
+const category = site.categories.Photography;
 
-export const navigation = navigationJson as NavigationData;
+/* ================= COMMON ================= */
 
-const contact = contactJson as ContactData;
-export const contactDetails = contact.details;
-export const inquiryOptions = contact.inquiryOptions;
-export const socialLinks = contact.socialLinks;
+export const common = site.common;
+export const contactInfo = common.contactInfo;
+export const footer = common.Footer;
+
+/* Banner of an inner page, e.g. "about" -> common.aboutBreadcrumb */
+export function getBreadcrumb(page: PageKey): Breadcrumb | undefined {
+  return common[`${page}Breadcrumb`];
+}
+
+/* ================= SECTIONS & VARIANTS ================= */
+
+export const sections = category.sections;
+export const templateComponents = category.templateComponents;
+
+/* Data of one variant of a section, e.g. getVariant("Hero", "PhotographyHero1") */
+export function getVariant<S extends SectionName>(
+  section: S,
+  variant: string,
+): CategorySections[S]["variants"][string] {
+  const variants = sections[section].variants as Record<
+    string,
+    CategorySections[S]["variants"][string]
+  >;
+  const data = variants[variant];
+
+  if (!data) {
+    throw new Error(`Missing variant "${variant}" in section "${section}"`);
+  }
+
+  return data;
+}
+
+/* Finds a variant's data in any section (used by the page renderer) */
+export function findVariant(variant: string): unknown {
+  for (const section of Object.values(sections)) {
+    const variants = section.variants as Record<string, unknown>;
+
+    if (variant in variants) {
+      return variants[variant];
+    }
+  }
+
+  return undefined;
+}
+
+/* Data of the section with `key` on `page` (follows the page's `variant`) */
+export function getPageSectionData(page: PageKey, key: string): unknown {
+  const entry = templateComponents.pages[page].components.find(
+    (component) => component.key === key,
+  );
+
+  if (!entry) {
+    throw new Error(`Page "${page}" has no section "${key}"`);
+  }
+
+  return findVariant(entry.variant ?? entry.component);
+}
+
+/* ================= SHARED HEADER ================= */
+
+export const header = getVariant("Header", templateComponents.shared.Header);
 
 /* ================= SERVICES ================= */
 
-const servicesData = servicesJson as ServicesData;
-export const services = servicesData.services;
-export const serviceSidebarOrder = servicesData.sidebarOrder;
-export const serviceDetailContent = servicesData.detailContent;
+export const services = getVariant("Services", "PhotographyServices1").services;
 
 /* Accepts a slug ("wedding-photography") or a number ("01") */
 export function findService(slugOrNumber: string) {
@@ -55,9 +94,7 @@ export function findService(slugOrNumber: string) {
 
 /* ================= BLOG ================= */
 
-const blogData = blogJson as BlogData;
-export const blogPosts = blogData.posts;
-export const blogArticle = blogData.article;
+export const blogPosts = getVariant("Blogs", "PhotographyBlogs1").blogs;
 
 export function findBlogPost(slug: string) {
   return blogPosts.find((post) => post.slug === slug);
@@ -65,22 +102,11 @@ export function findBlogPost(slug: string) {
 
 /* ================= PORTFOLIO ================= */
 
-const portfolioData = portfolioJson as PortfolioData;
-export const portfolioItems = portfolioData.items;
-export const portfolioProject = portfolioData.project;
+export const portfolioItems = getVariant(
+  "Portfolio",
+  "PhotographyPortfolio1",
+).items;
 
 export function findPortfolioItem(slug: string) {
   return portfolioItems.find((item) => item.slug === slug);
 }
-
-/* ================= OTHER SECTIONS ================= */
-
-export const faqGroups = (faqJson as FaqData).groups;
-export const testimonials = (testimonialsJson as TestimonialsData).testimonials;
-export const teamMembers = (teamJson as TeamData).members;
-export const features = (featuresJson as FeaturesData).features;
-export const heroSlides = (heroJson as HeroData).slides;
-
-const booking = bookingJson as BookingData;
-export const bookingPackages = booking.packages;
-export const bookingLocations = booking.locations;

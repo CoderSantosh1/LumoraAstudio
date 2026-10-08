@@ -5,12 +5,19 @@ import Link from "next/link";
 import { useState } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { revealDelay } from "./siteData";
-import { services } from "@/data";
+import type { ServicesVariant } from "@/types";
 
 /* The home page pages through four at a time; the services page shows all */
 const SERVICES_PER_PAGE = 4;
 
-export default function Services({ showAll = false }: { showAll?: boolean }) {
+export default function Services({
+  data,
+  showAll = false,
+}: {
+  data: ServicesVariant;
+  showAll?: boolean;
+}) {
+  const services = data.services;
   const [page, setPage] = useState(1);
   const totalPages = Math.ceil(services.length / SERVICES_PER_PAGE);
 
@@ -37,30 +44,29 @@ export default function Services({ showAll = false }: { showAll?: boolean }) {
           <div>
             <div className="mb-1 flex items-center gap-5">
               <span className="font-sans text-[12px] font-medium tracking-[0.25em] text-[#dca653]">
-                SERVICES
+                {data.subtitle}
               </span>
 
               <span className="h-px w-[115px] bg-[#805e35]" />
             </div>
 
             <h2 className="font-serif text-[48px] leading-[0.95] tracking-[-1px] text-white sm:text-[56px]">
-              Our Photography
+              {data.title1}
             </h2>
 
             <h3 className="mt-1 font-serif text-[47px] leading-[0.95] italic text-[#dca653] sm:text-[54px]">
-              Services
+              {data.titleScript}
             </h3>
           </div>
 
           {/* Right */}
           <div className="lg:pt-5 lg:pl-5">
             <p className="max-w-[570px] font-sans text-[15px] leading-[1.6] text-white/70">
-              We&apos;re deeply passionate about{" "}
+              {data.descriptionLead}{" "}
               <strong className="font-semibold text-white">
-                capturing your lovely memories
+                {data.descriptionHighlight}
               </strong>{" "}
-              in cameras and convey your love for every moment of life as a
-              whole.
+              {data.descriptionEnd}
             </p>
           </div>
         </div>

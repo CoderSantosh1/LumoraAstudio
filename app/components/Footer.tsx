@@ -8,11 +8,11 @@ import {
   Mail,
   ChevronRight,
 } from "lucide-react";
-import { contactDetails, navigation } from "@/data";
+import { contactInfo, footer } from "@/data";
 
-const quickLinks = navigation.footerQuickLinks;
+const quickLinks = footer.quickLinks;
 
-const services = navigation.footerServices;
+const services = footer.servicesLinks;
 
 export default function Footer() {
   return (
@@ -24,7 +24,7 @@ export default function Footer() {
 
       <div className="absolute inset-0 z-0">
         <Image
-          src="/Home/FooterBackgroundImage.png"
+          src={footer.bgImage}
           alt=""
           fill
           priority
@@ -62,8 +62,8 @@ export default function Footer() {
             {/* Logo */}
                 <Link href="/" className="inline-block">
                 <Image
-                    src="/logo.png"
-                    alt="Lumora Astudio"
+                    src={footer.logo}
+                    alt={footer.logoAlt}
                     width={270}
                     height={75}
                     className="h-auto w-[245px] object-contain"
@@ -75,16 +75,14 @@ export default function Footer() {
                 <span className="h-px w-4 bg-[#a89476]" />
 
                 <span className="text-[7px] tracking-[0.34em]">
-                    • • • PHOTOGRAPHY &amp; FILMMAKING • • •
+                    {footer.tagline}
                 </span>
 
                 <span className="h-px w-4 bg-[#a89476]" />
                 </div>
             {/* Description */}
             <p className="mt-5 max-w-[270px] font-sans text-[13px] leading-[1.65] text-white/70">
-              We are passionate about capturing your lovely memories in
-              cameras and convey your love for every moment of life as a
-              whole.
+              {footer.description}
             </p>
           </div>
 
@@ -94,16 +92,16 @@ export default function Footer() {
 
           <div>
             <h3 className="font-serif text-[20px] text-white">
-              Quick Links
+              {footer.quickLinksTitle}
             </h3>
 
             <div className="mt-2 h-[2px] w-[48px] bg-[#dca653]" />
 
             <ul className="mt-4 space-y-2.5">
               {quickLinks.map((item) => (
-                <li key={item.name}>
+                <li key={item.id}>
                   <Link
-                    href={item.href}
+                    href={item.url}
                     className="group flex items-center gap-3 whitespace-nowrap text-[13px] text-white/65 transition-colors duration-300 hover:text-[#dca653]"
                   >
                     <ChevronRight
@@ -112,7 +110,7 @@ export default function Footer() {
                       className="shrink-0 text-[#dca653] transition-transform duration-300 group-hover:translate-x-1"
                     />
 
-                    <span>{item.name}</span>
+                    <span>{item.label}</span>
                   </Link>
                 </li>
               ))}
@@ -125,16 +123,16 @@ export default function Footer() {
 
           <div>
             <h3 className="font-serif text-[20px] text-white">
-              Our Services
+              {footer.servicesTitle}
             </h3>
 
             <div className="mt-2 h-[2px] w-[48px] bg-[#dca653]" />
 
             <ul className="mt-4 space-y-2.5">
               {services.map((item) => (
-                <li key={item.name}>
+                <li key={item.id}>
                   <Link
-                    href={item.href}
+                    href={item.url}
                     className="group flex items-start gap-3 whitespace-nowrap text-[13px] leading-5 text-white/65 transition-colors duration-300 hover:text-[#dca653]"
                   >
                     <ChevronRight
@@ -143,7 +141,7 @@ export default function Footer() {
                       className="mt-[2px] shrink-0 text-[#dca653] transition-transform duration-300 group-hover:translate-x-1"
                     />
 
-                    <span>{item.name}</span>
+                    <span>{item.label}</span>
                   </Link>
                 </li>
               ))}
@@ -156,7 +154,7 @@ export default function Footer() {
 
           <div className="max-w-[220px]">
             <h3 className="font-serif text-[20px] text-white">
-              Get In Touch
+              {footer.getInTouchTitle}
             </h3>
 
             <div className="mt-2 h-[2px] w-[48px] bg-[#dca653]" />
@@ -171,13 +169,13 @@ export default function Footer() {
 
                 <div>
                   <p className="text-[12px] font-medium text-[#dca653]">
-                    Address
+                    {footer.addressTitle}
                   </p>
 
                   <p className="mt-1 text-[11px] leading-[1.55] text-white/65">
-                    {contactDetails.addressLine1},
+                    {contactInfo.addressLine1},
                     <br />
-                    {contactDetails.addressLine2}
+                    {contactInfo.addressLine2}
                   </p>
                 </div>
               </div>
@@ -190,14 +188,14 @@ export default function Footer() {
 
                 <div>
                   <p className="text-[12px] font-medium text-[#dca653]">
-                    Phone
+                    {footer.phoneTitle}
                   </p>
 
                   <Link
-                    href={contactDetails.phoneHref}
+                    href={contactInfo.phoneUrl}
                     className="mt-1 block whitespace-nowrap text-[11px] text-white/65 transition-colors hover:text-[#dca653]"
                   >
-                    {contactDetails.phone}
+                    {contactInfo.phone}
                   </Link>
                 </div>
               </div>
@@ -210,14 +208,14 @@ export default function Footer() {
 
                 <div>
                   <p className="text-[12px] font-medium text-[#dca653]">
-                    Email
+                    {footer.emailTitle}
                   </p>
 
                   <Link
-                    href={`mailto:${contactDetails.email}`}
+                    href={`mailto:${contactInfo.email}`}
                     className="mt-1 block whitespace-nowrap text-[11px] text-white/65 transition-colors hover:text-[#dca653]"
                   >
-                    {contactDetails.email}
+                    {contactInfo.email}
                   </Link>
                 </div>
               </div>
@@ -234,7 +232,7 @@ export default function Footer() {
       <div className="relative z-10 border-t border-[#74532a] bg-black/25">
         <div className="mx-auto flex min-h-[72px] max-w-[1400px] items-center justify-center px-6 lg:px-14">
           <p className="text-center font-sans text-[12px] text-white/65">
-            © 2024 Lumora Astudio. All Rights Reserved.
+            {footer.copyrightText}
           </p>
         </div>
       </div>

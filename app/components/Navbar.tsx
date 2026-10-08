@@ -4,13 +4,14 @@ import Link from "next/link";
 import Image from "next/image";
 import { useState } from "react";
 import { usePathname } from "next/navigation";
-import { navigation } from "@/data";
+import { header } from "@/data";
 
 export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
   const pathname = usePathname();
 
-  const navItems = navigation.mainNav;
+  const navItems = header.navLinks;
+  const booking = header.bookingButton;
 
   const isActive = (href: string) => {
     if (href === "/") {
@@ -28,8 +29,8 @@ export default function Navbar() {
           {/* ================= LOGO ================= */}
           <Link href="/" className="shrink-0">
             <Image
-              src="/logo.png"
-              alt="Lumora Astudio"
+              src={header.logo}
+              alt={header.logoAlt}
               width={250}
               height={60}
               priority
@@ -42,19 +43,19 @@ export default function Navbar() {
 
             <div className="flex items-center gap-10">
               {navItems.map((item) => {
-                const active = isActive(item.href);
+                const active = isActive(item.url);
 
                 return (
                   <Link
-                    key={item.name}
-                    href={item.href}
+                    key={item.id}
+                    href={item.url}
                     className={`relative py-7 font-serif text-[17px] transition-all duration-300 ${
                       active
                         ? "text-[#d8a84e]"
                         : "text-[#eeeeee] hover:text-[#d8a84e]"
                     }`}
                   >
-                    {item.name}
+                    {item.label}
 
                     {/* Active underline */}
                     {active && (
@@ -70,14 +71,14 @@ export default function Navbar() {
 
             {/* Book a Shoot */}
             <Link
-              href="/book-a-shoot"
+              href={booking.url}
               className={`rounded-full border px-7 py-3 font-serif text-[16px] transition-all duration-300 ${
-                isActive("/book-a-shoot")
+                isActive(booking.url)
                   ? "border-[#d5a044] bg-[#d5a044] text-black"
                   : "border-[#d5a044] text-[#f5eee1] hover:bg-[#d5a044] hover:text-black"
               }`}
             >
-              Book a Shoot
+              {booking.text}
             </Link>
           </div>
 
@@ -103,12 +104,12 @@ export default function Navbar() {
         >
           <div className="flex flex-col px-6 py-5">
             {navItems.map((item) => {
-              const active = isActive(item.href);
+              const active = isActive(item.url);
 
               return (
                 <Link
-                  key={item.name}
-                  href={item.href}
+                  key={item.id}
+                  href={item.url}
                   onClick={() => setMenuOpen(false)}
                   className={`border-b border-[#222] py-4 font-serif text-[17px] ${
                     active
@@ -116,21 +117,21 @@ export default function Navbar() {
                       : "text-white hover:text-[#d5a044]"
                   }`}
                 >
-                  {item.name}
+                  {item.label}
                 </Link>
               );
             })}
 
             <Link
-              href="/book-a-shoot"
+              href={booking.url}
               onClick={() => setMenuOpen(false)}
               className={`mt-5 rounded-full border px-6 py-3 text-center font-serif transition ${
-                isActive("/book-a-shoot")
+                isActive(booking.url)
                   ? "border-[#d5a044] bg-[#d5a044] text-black"
                   : "border-[#d5a044] text-[#f5eee1] hover:bg-[#d5a044] hover:text-black"
               }`}
             >
-              Book a Shoot
+              {booking.text}
             </Link>
           </div>
         </div>

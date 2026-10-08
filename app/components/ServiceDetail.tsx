@@ -1,18 +1,23 @@
 import Image from "next/image";
 import Link from "next/link";
 import { Check } from "lucide-react";
-import { serviceDetailContent, serviceSidebarOrder, services } from "@/data";
-import type { Service } from "@/types";
+import { services } from "@/data";
+import type { Service, ServiceDetailVariant } from "@/types";
 
-const { intro, stepsIntro, steps, outro } = serviceDetailContent;
-
-export default function ServiceDetail({ service }: { service: Service }) {
+export default function ServiceDetail({
+  data,
+  service,
+}: {
+  data: ServiceDetailVariant;
+  service: Service;
+}) {
+  const { intro, stepsIntro, steps, outro, sidebarOrder } = data;
   const [firstWord, ...restWords] = service.title.split(" ");
   const otherServices = [...services]
     .sort(
       (a, b) =>
-        serviceSidebarOrder.indexOf(a.slug) -
-        serviceSidebarOrder.indexOf(b.slug),
+        sidebarOrder.indexOf(a.slug) -
+        sidebarOrder.indexOf(b.slug),
     )
     .filter((item) => item.slug !== service.slug)
     .slice(0, 4);
@@ -57,7 +62,7 @@ export default function ServiceDetail({ service }: { service: Service }) {
 
           {/* ================= SERVICE STEPS ================= */}
           <h3 className="mt-9 font-sans text-[18px] font-medium tracking-[0.15em] text-[#e8b264] sm:text-[20px]">
-            SERVICE STEPS
+            {data.stepsTitle}
           </h3>
 
           <div className="mt-3 h-[2px] w-[50px] bg-[#dca653]" />
@@ -90,7 +95,8 @@ export default function ServiceDetail({ service }: { service: Service }) {
         {/* ================================================= */}
         <aside data-reveal="right" className="lg:pt-5">
           <h3 className="font-serif text-[30px] leading-none text-white">
-            <span className="text-[#e3ad5c]">Other</span> Services
+            <span className="text-[#e3ad5c]">{data.sidebarTitle1}</span>{" "}
+            {data.sidebarTitle2}
           </h3>
 
           <div className="mt-4 h-[2px] w-[42px] bg-[#dca653]" />

@@ -1,11 +1,6 @@
-import PageHero from "@/app/components/PageHero";
-import BookingForm from "@/app/components/BookingForm";
+import PageSections from "@/app/components/PageSections";
 
+/* Sections come from data/category.json -> templateComponents.pages.booking */
 export default function BookAShoot() {
-  return (
-    <>
-      <PageHero title="Book Appointment" />
-      <BookingForm />
-    </>
-  );
+  return <PageSections page="booking" />;
 }

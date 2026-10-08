@@ -1,14 +1,6 @@
-"use client";
-import Servicehero from "@/app/components/Serviceshero";
-import Services from "@/app/components/Services" 
-export default function Service (){
+import PageSections from "@/app/components/PageSections";
 
-
-    return (
-        <>
-        <Servicehero />
-        <Services showAll />
-        </>
-    )
-
+/* Sections come from data/category.json -> templateComponents.pages.services */
+export default function Service() {
+  return <PageSections page="services" />;
 }

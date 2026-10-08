@@ -1,10 +1,10 @@
 import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
-import { portfolioItems } from "@/data";
+import type { PortfolioVariant } from "@/types";
 import { scriptFont, revealDelay } from "./siteData";
 
-export default function PortfolioGrid() {
+export default function PortfolioGrid({ data }: { data: PortfolioVariant }) {
   return (
     <section className="relative overflow-hidden bg-[#0b0a09] py-16 lg:pb-14 lg:pt-14">
       {/* ================= BACKGROUND ================= */}
@@ -23,28 +23,26 @@ export default function PortfolioGrid() {
             <span className="h-px w-[55px] bg-[#b07d3a]" />
 
             <span className="font-sans text-[14px] font-medium tracking-[0.25em] text-[#dca653]">
-              OUR PORTFOLIO
+              {data.subtitle}
             </span>
 
             <span className="h-px w-[55px] bg-[#b07d3a]" />
           </div>
 
           <h2 className="mt-3 font-serif text-[42px] leading-tight text-white sm:text-[54px]">
-            Lumora Astudio
+            {data.title1}
           </h2>
 
           <p
             className="text-[34px] leading-[1.35] text-[#dca653] sm:text-[48px]"
             style={scriptFont}
           >
-            All of Your beautiful memories
+            {data.titleScript}
           </p>
 
           <p className="mt-3 font-sans text-[16px] leading-[1.8] text-white/85 sm:text-[18px]">
-            We capture real moments, genuine emotions and timeless stories
-            through our lens.
-            <br className="hidden sm:block" /> Explore our latest work and see
-            how we turn moments into beautiful memories.
+            {data.description[0]}
+            <br className="hidden sm:block" /> {data.description[1]}
           </p>
         </div>
 
@@ -52,7 +50,7 @@ export default function PortfolioGrid() {
         {/* GRID */}
         {/* ================================================= */}
         <div className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-          {portfolioItems.map((item, index) => (
+          {data.items.map((item, index) => (
             <Link
               key={item.slug}
               data-reveal="up"

@@ -5,13 +5,18 @@ import {
   Check,
   FolderOpen,
 } from "lucide-react";
-import { blogArticle } from "@/data";
-import type { BlogPost } from "@/types";
+import type { BlogPost, BlogsVariant } from "@/types";
 import { scriptFont } from "./siteData";
 
-const { bodyText, concepts } = blogArticle;
+export default function BlogDetail({
+  data,
+  post,
+}: {
+  data: BlogsVariant;
+  post: BlogPost;
+}) {
+  const { bodyText, concepts, conceptsTitle, introImage, mainImage, bottomImage } = data.detail;
 
-export default function BlogDetail({ post }: { post: BlogPost }) {
   return (
     <article className="relative overflow-hidden bg-[#0d0b09]">
       {/* ================================================= */}
@@ -21,7 +26,7 @@ export default function BlogDetail({ post }: { post: BlogPost }) {
         {/* Background camera */}
         <div className="pointer-events-none absolute inset-y-0 right-0 hidden w-[45%] md:block">
           <Image
-            src="/Blog/IntroCamera.png"
+            src={introImage}
             alt=""
             fill
             sizes="45vw"
@@ -103,8 +108,8 @@ export default function BlogDetail({ post }: { post: BlogPost }) {
       <div className="relative mx-auto max-w-[1400px] px-6 pb-16 lg:px-[70px]">
         <div data-reveal="zoom" className="relative h-[280px] overflow-hidden rounded-[10px] border border-[#5c4428] sm:h-[400px] lg:h-[476px]">
           <Image
-            src="/Blog/ProjectConcept.png"
-            alt="Young photographer holding a vintage camera"
+            src={mainImage.src}
+            alt={mainImage.alt}
             fill
             sizes="(max-width: 1024px) 100vw, 1210px"
             className="object-cover"
@@ -112,7 +117,7 @@ export default function BlogDetail({ post }: { post: BlogPost }) {
         </div>
 
         <h2 className="mt-7 font-serif text-[34px] font-semibold text-white sm:text-[40px]">
-          Project Concepts
+          {conceptsTitle}
         </h2>
 
         <div className="mt-2 h-[4px] w-[68px] bg-[#e8b264]" />
@@ -147,8 +152,8 @@ export default function BlogDetail({ post }: { post: BlogPost }) {
 
         <div data-reveal="zoom" className="relative mt-6 h-[260px] overflow-hidden rounded-[10px] sm:h-[380px] lg:h-[444px]">
           <Image
-            src="/Blog/LakePhotographer.png"
-            alt="Photographer shooting a mountain lake"
+            src={bottomImage.src}
+            alt={bottomImage.alt}
             fill
             sizes="(max-width: 1024px) 100vw, 1210px"
             className="object-cover"

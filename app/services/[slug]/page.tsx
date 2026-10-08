@@ -1,8 +1,9 @@
 import { Suspense } from "react";
 import { notFound } from "next/navigation";
-import PageHero from "@/app/components/PageHero";
+import PageSections from "@/app/components/PageSections";
 import ServiceDetail from "@/app/components/ServiceDetail";
-import { findService, services } from "@/data";
+import { findService, getPageSectionData, services } from "@/data";
+import type { ServiceDetailVariant } from "@/types";
 
 export function generateStaticParams() {
   return services.flatMap((service) => [
@@ -18,7 +19,12 @@ function ServiceContent({ slug }: { slug: string }) {
     notFound();
   }
 
-  return <ServiceDetail service={service} />;
+  const data = getPageSectionData(
+    "serviceDetail",
+    "ServiceDetail",
+  ) as ServiceDetailVariant;
+
+  return <ServiceDetail data={data} service={service} />;
 }
 
 export default function ServiceDetailPage({
@@ -27,13 +33,17 @@ export default function ServiceDetailPage({
   params: Promise<{ slug: string }>;
 }) {
   return (
-    <>
-      <PageHero title="Service Detail" />
-      <Suspense fallback={<div className="min-h-[600px] bg-[#0b0a09]" />}>
-        {params.then(({ slug }) => (
-          <ServiceContent slug={slug} />
-        ))}
-      </Suspense>
-    </>
+    <PageSections
+      page="serviceDetail"
+      slots={{
+        ServiceDetail: (
+          <Suspense fallback={<div className="min-h-[600px] bg-[#0b0a09]" />}>
+            {params.then(({ slug }) => (
+              <ServiceContent slug={slug} />
+            ))}
+          </Suspense>
+        ),
+      }}
+    />
   );
 }

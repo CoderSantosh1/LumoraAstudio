@@ -10,12 +10,13 @@ import {
   ChevronLeft,
   ChevronRight,
 } from "lucide-react";
-import { blogPosts } from "@/data";
+import type { BlogsVariant } from "@/types";
 import { scriptFont, revealDelay } from "./siteData";
 
 const POSTS_PER_PAGE = 8;
 
-export default function BlogList() {
+export default function BlogList({ data }: { data: BlogsVariant }) {
+  const blogPosts = data.blogs;
   const [page, setPage] = useState(1);
   const totalPages = Math.ceil(blogPosts.length / POSTS_PER_PAGE);
   const visiblePosts = blogPosts.slice(
@@ -44,32 +45,31 @@ export default function BlogList() {
           <div>
             <div className="mb-2 flex items-center gap-5">
               <span className="font-serif text-[15px] tracking-[0.08em] text-[#dca653]">
-                LATEST NEWS
+                {data.subtitle}
               </span>
 
               <span className="h-px w-[128px] bg-[#9c7339]" />
             </div>
 
             <h2 className="font-serif text-[46px] leading-[0.95] text-white sm:text-[58px]">
-              Our Photography
+              {data.title1}
             </h2>
 
             <h3
               className="mt-1 text-[42px] leading-[1.15] text-[#dca653] sm:text-[50px]"
               style={scriptFont}
             >
-              Related Blog
+              {data.titleScript}
             </h3>
           </div>
 
           <div className="flex items-start justify-between gap-6 lg:pt-10">
             <p className="max-w-[470px] font-serif text-[15px] leading-6 text-white/75">
-              We&apos;re deeply passionate about{" "}
+              {data.descriptionLead}{" "}
               <strong className="font-semibold text-white">
-                capturing your lovely memories
+                {data.descriptionHighlight}
               </strong>{" "}
-              in cameras and convey your love for every moment of life as a
-              whole.
+              {data.descriptionEnd}
             </p>
 
             <div className="hidden shrink-0 items-center gap-3 pt-6 lg:flex">

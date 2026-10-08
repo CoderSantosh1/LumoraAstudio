@@ -1,8 +1,9 @@
 import { Suspense } from "react";
 import { notFound } from "next/navigation";
-import PageHero from "@/app/components/PageHero";
+import PageSections from "@/app/components/PageSections";
 import PortfolioDetail from "@/app/components/PortfolioDetail";
-import { findPortfolioItem, portfolioItems } from "@/data";
+import { findPortfolioItem, getPageSectionData, portfolioItems } from "@/data";
+import type { PortfolioDetailVariant } from "@/types";
 
 export function generateStaticParams() {
   return portfolioItems.map((item) => ({ slug: item.slug }));
@@ -15,7 +16,12 @@ function PortfolioContent({ slug }: { slug: string }) {
     notFound();
   }
 
-  return <PortfolioDetail item={item} />;
+  const data = getPageSectionData(
+    "portfolioDetail",
+    "PortfolioDetail",
+  ) as PortfolioDetailVariant;
+
+  return <PortfolioDetail data={data} item={item} />;
 }
 
 export default function PortfolioDetailPage({
@@ -24,13 +30,17 @@ export default function PortfolioDetailPage({
   params: Promise<{ slug: string }>;
 }) {
   return (
-    <>
-      <PageHero title="Portfolio Detail" />
-      <Suspense fallback={<div className="min-h-[600px] bg-[#0d0c0b]" />}>
-        {params.then(({ slug }) => (
-          <PortfolioContent slug={slug} />
-        ))}
-      </Suspense>
-    </>
+    <PageSections
+      page="portfolioDetail"
+      slots={{
+        PortfolioDetail: (
+          <Suspense fallback={<div className="min-h-[600px] bg-[#0d0c0b]" />}>
+            {params.then(({ slug }) => (
+              <PortfolioContent slug={slug} />
+            ))}
+          </Suspense>
+        ),
+      }}
+    />
   );
 }

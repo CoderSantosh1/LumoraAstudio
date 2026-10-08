@@ -1,15 +1,13 @@
-
-
 "use client";
 
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
-import { heroSlides } from "@/data";
+import type { HeroVariant } from "@/types";
+import { scriptFont } from "./siteData";
 
-const slides = heroSlides;
-
-export default function Hero() {
+export default function Hero({ data }: { data: HeroVariant }) {
+  const slides = data.slides;
   const [activeSlide, setActiveSlide] = useState(0);
   const [isPaused, setIsPaused] = useState(false);
 
@@ -26,7 +24,7 @@ export default function Hero() {
     }, 5000);
 
     return () => window.clearInterval(intervalId);
-  }, [activeSlide, isPaused]);
+  }, [activeSlide, isPaused, slides.length]);
 
   const moveSlide = (direction: number) => {
     setActiveSlide((currentSlide) =>
@@ -74,7 +72,7 @@ export default function Hero() {
           {/* Small Heading */}
           <div className="mb-5 flex items-center gap-4">
             <span className="font-sans text-[12px] font-medium tracking-[0.3em] text-[#d9a44c] sm:text-[14px]">
-              PHOTOGRAPHY STUDIO
+              {data.subtitle}
             </span>
 
             <span className="h-[2px] w-12 bg-[#d9a44c]" />
@@ -82,32 +80,34 @@ export default function Hero() {
 
           {/* Main Heading */}
           <h1 className="max-w-[740px] font-serif text-[42px] leading-[0.95] tracking-normal text-white sm:text-[54px] md:text-[62px] lg:text-[68px]">
-            Capturing
+            {data.title1}
             <span
               className="ml-2 inline-block font-light italic text-[#d9a44c]"
-              style={{
-                fontFamily: '"Segoe Script", "Brush Script MT", cursive',
-              }}
+              style={scriptFont}
             >
-              Moments
+              {data.titleScript}
             </span>
             <br />
-            That Last Forever
+            {data.title2}
           </h1>
 
           {/* Description */}
           <p className="mt-7 max-w-[570px] font-sans text-[16px] leading-7 text-white/85 sm:text-[18px]">
-            From candid emotions to timeless portraits, we turn
-            <br className="hidden sm:block" />
-            your special moments into beautiful stories.
+            {data.description.map((line, index) => (
+              <span key={line}>
+                {index > 0 && <br className="hidden sm:block" />}
+                {index > 0 && " "}
+                {line}
+              </span>
+            ))}
           </p>
 
           {/* CTA */}
           <Link
-            href="/book-a-shoot"
+            href={data.button.url}
             className="mt-8 inline-flex items-center gap-4 rounded-[4px] bg-[#e5b45e] px-8 py-4 font-sans text-[15px] font-semibold text-[#17120b] transition-all duration-300 hover:bg-[#f0c879] hover:shadow-[0_8px_30px_rgba(229,180,94,0.25)]"
           >
-            Book a Shoot
+            {data.button.text}
             <span className="text-[20px] leading-none">→</span>
           </Link>
         </div>

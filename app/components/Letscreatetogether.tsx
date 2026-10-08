@@ -3,8 +3,9 @@
 import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
+import type { CtaVariant } from "@/types";
 
-export default function LetsCreatetogether() {
+export default function LetsCreatetogether({ data: cta }: { data: CtaVariant }) {
   return (
     <section className="relative overflow-hidden bg-[#0b0a09]">
       {/* ================================================= */}
@@ -13,7 +14,7 @@ export default function LetsCreatetogether() {
 
       <div className="absolute inset-0">
         <Image
-          src="/About/CreatortoGether.png"
+          src={cta.bgImage}
           alt=""
           fill
           priority
@@ -38,7 +39,7 @@ export default function LetsCreatetogether() {
           {/* Small heading */}
           <div className="mb-3 flex items-center gap-5">
             <span className="font-sans text-[12px] font-medium tracking-[0.22em] text-[#dca653]">
-              LET&apos;S CREATE TOGETHER
+              {cta.subtitle}
             </span>
 
             <span className="h-px w-[125px] bg-[#b07d3a]" />
@@ -46,23 +47,22 @@ export default function LetsCreatetogether() {
 
           {/* Main heading */}
           <h2 className="font-serif text-[46px] leading-[0.98] text-white sm:text-[58px] lg:text-[60px]">
-            Ready to Capture
+            {cta.title1}
           </h2>
 
           {/* Script heading */}
           <h3 className="mt-1 font-serif text-[43px] font-light italic leading-[1.05] text-[#dca653] sm:text-[52px] lg:text-[56px]">
-            Your Special Moments?
+            {cta.titleScript}
           </h3>
 
           {/* Description */}
           <p className="mt-5 max-w-[580px] font-sans text-[15px] leading-6 text-white/75 sm:text-[16px]">
-            Whether it&apos;s a wedding, event or a personal shoot, our team is
-            here to turn your moments into timeless visuals.
+            {cta.description}
           </p>
 
           {/* CTA */}
           <Link
-            href="/book-a-shoot"
+            href={cta.button.url}
             className="group mt-6 inline-flex h-[62px] items-center gap-4 rounded-full border border-[#9f7137] bg-transparent pr-7 transition-all duration-300 hover:border-[#dca653] hover:bg-[#dca653]/10"
           >
             {/* Arrow circle */}
@@ -74,7 +74,7 @@ export default function LetsCreatetogether() {
             </span>
 
             <span className="font-sans text-[13px] font-medium tracking-[0.08em] text-white">
-              BOOK US NOW
+              {cta.button.text}
             </span>
           </Link>
         </div>

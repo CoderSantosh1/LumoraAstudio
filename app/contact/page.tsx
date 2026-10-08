@@ -1,11 +1,6 @@
-import PageHero from "@/app/components/PageHero";
-import ContactUs from "@/app/components/ContactUs";
+import PageSections from "@/app/components/PageSections";
 
+/* Sections come from data/category.json -> templateComponents.pages.contact */
 export default function Contact() {
-  return (
-    <>
-      <PageHero title="Contact Us" />
-      <ContactUs />
-    </>
-  );
+  return <PageSections page="contact" />;
 }

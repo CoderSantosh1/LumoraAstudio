@@ -3,10 +3,11 @@
 import Image from "next/image";
 import { useState } from "react";
 import { ChevronDown, MessageCircleQuestionMark } from "lucide-react";
-import { faqGroups } from "@/data";
+import type { FaqVariant } from "@/types";
 import { scriptFont } from "./siteData";
 
-export default function Faq() {
+export default function Faq({ data }: { data: FaqVariant }) {
+  const { faqGroups, card } = data;
   const [openItem, setOpenItem] = useState<string | null>("0-0");
 
   return (
@@ -21,7 +22,7 @@ export default function Faq() {
       {/* Photographer image - top right */}
       <div className="pointer-events-none absolute right-0 top-0 hidden h-[260px] w-[36%] lg:block">
         <Image
-          src="/Faq/FaqPhotographer.png"
+          src={data.image}
           alt=""
           fill
           sizes="36vw"
@@ -40,30 +41,28 @@ export default function Faq() {
         <div data-reveal="left" className="min-w-0">
           <div className="flex items-center gap-4">
             <span className="font-sans text-[13px] tracking-[0.1em] text-[#dca653]">
-              FAQ
+              {data.subtitle}
             </span>
 
             <span className="h-px w-[105px] bg-[#b07d3a]" />
           </div>
 
           <h2 className="mt-1 flex flex-wrap items-baseline gap-x-4 font-serif text-[36px] font-semibold leading-tight text-white sm:text-[46px]">
-            Frequently Asked
+            {data.title1}
             <span
               className="font-normal text-[#dca653]"
               style={scriptFont}
             >
-              Questions
+              {data.titleScript}
             </span>
           </h2>
 
           <p className="mt-2 max-w-[620px] font-sans text-[15px] leading-[1.45] text-white/85">
-            Find answers to the most common questions about our photography
-            services, booking process, pricing and more. If you still need
-            help, feel free to contact our team anytime.
+            {data.description}
           </p>
 
           <h3 className="mt-7 font-serif text-[23px] font-semibold text-white">
-            General Questions
+            {data.groupTitle}
           </h3>
 
           <div className="mt-2 h-[3px] w-[34px] bg-[#e3ad5c]" />
@@ -137,8 +136,8 @@ export default function Faq() {
         <aside data-reveal="right" className="self-end overflow-hidden rounded-[6px] border border-[#5c4428] bg-[#0e0d0b]/90 lg:mb-[-10px]">
           <div className="relative h-[205px]">
             <Image
-              src="/Faq/FaqCamera.png"
-              alt="Professional camera on a table"
+              src={card.image.src}
+              alt={card.image.alt}
               fill
               sizes="380px"
               className="object-cover"
@@ -149,7 +148,7 @@ export default function Faq() {
             <div className="flex items-start justify-between">
               <div>
                 <h3 className="font-serif text-[32px] font-bold leading-none text-white">
-                  FAQ
+                  {card.title}
                 </h3>
 
                 <div className="mt-3 h-[3px] w-[34px] bg-[#e3ad5c]" />
@@ -163,8 +162,7 @@ export default function Faq() {
             </div>
 
             <p className="mt-4 font-sans text-[15px] leading-[1.4] text-white/85">
-              Here you&apos;ll find answers to the most common questions about
-              our photography services, booking process and more.
+              {card.description}
             </p>
           </div>
         </aside>

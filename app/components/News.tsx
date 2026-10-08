@@ -4,12 +4,12 @@ import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight, ArrowLeft, CalendarDays } from "lucide-react";
 import { revealDelay } from "./siteData";
-import { blogPosts } from "@/data";
+import type { BlogsVariant } from "@/types";
 
-/* Latest four posts from data/blog.json */
-const latestPosts = blogPosts.slice(0, 4);
+export default function News({ data }: { data: BlogsVariant }) {
+  /* Latest four posts */
+  const latestPosts = data.blogs.slice(0, 4);
 
-export default function News() {
   return (
     <section className="relative overflow-hidden bg-[#0b0a09] py-20 lg:py-24">
       {/* Background */}
@@ -30,7 +30,7 @@ export default function News() {
             {/* Label */}
             <div className="mb-2 flex items-center gap-5">
               <span className="font-sans text-[12px] font-medium tracking-[0.23em] text-[#dca653]">
-                LATEST NEWS
+                {data.subtitle}
               </span>
 
               <span className="h-px w-[120px] bg-[#806039]" />
@@ -38,23 +38,22 @@ export default function News() {
 
             {/* Heading */}
             <h2 className="font-serif text-[48px] leading-[0.95] text-white sm:text-[57px]">
-              Our Photography
+              {data.title1}
             </h2>
 
             <h3 className="mt-1 font-serif text-[46px] italic leading-none text-[#dca653] sm:text-[54px]">
-              Related Blog
+              {data.titleScript}
             </h3>
           </div>
 
           {/* RIGHT DESCRIPTION + ARROWS */}
           <div className="flex items-start justify-between gap-6 lg:pt-8">
             <p className="max-w-[520px] font-sans text-[15px] leading-6 text-white/70">
-              We&apos;re deeply passionate about{" "}
+              {data.descriptionLead}{" "}
               <strong className="font-semibold text-white">
-                capturing your lovely memories
+                {data.descriptionHighlight}
               </strong>{" "}
-              in cameras and convey your love for every moment of life as a
-              whole.
+              {data.descriptionEnd}
             </p>
 
             {/* Navigation */}
