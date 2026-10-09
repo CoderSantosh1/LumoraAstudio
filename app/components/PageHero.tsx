@@ -9,7 +9,7 @@ export default function PageHero({
 }) {
   return (
     <section className="relative h-[340px] w-full overflow-hidden lg:h-[380px]">
-      {/* Background */}
+      {/* Background image, shown as-is (no overlays or effects) */}
       <div className="absolute inset-0">
         <Image
           src={image}
@@ -19,15 +19,6 @@ export default function PageHero({
           sizes="100vw"
           className="object-cover object-center"
         />
-
-        {/* Cinematic dark overlay */}
-        <div className="absolute inset-0 bg-[#080b0b]/30" />
-
-        {/* Warm cinematic tone */}
-        <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(8,10,10,0.18),rgba(18,15,10,0.08),rgba(8,10,8,0.22))]" />
-
-        {/* Bottom blend */}
-        <div className="absolute inset-x-0 bottom-0 h-16 bg-gradient-to-t from-[#0b0a09]/65 to-transparent" />
       </div>
 
       {/* Heading */}
