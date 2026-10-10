@@ -88,7 +88,7 @@
       "addressTitle": "Address",
       "phoneTitle": "Phone",
       "emailTitle": "Email",
-      "copyrightText": "© 2024 Lumora Astudio. All Rights Reserved."
+      "copyrightText": "Copyright © 2026. All rights reserved. Powered by Lestow."
     },
     "aboutBreadcrumb": {
       "title": "About Us",
@@ -485,6 +485,20 @@
                   "name": "Anjali Verma",
                   "location": "Bengaluru",
                   "text": "A wonderful team with great ideas and patience. The entire shoot was smooth and fun. The final photos were stunning and truly memorable!",
+                  "rating": 5
+                },
+                {
+                  "id": "t4",
+                  "name": "Karan Malhotra",
+                  "location": "Pune",
+                  "text": "Our pre-wedding shoot was an absolute delight. The team suggested beautiful locations and guided every pose naturally. We could not have asked for better pictures!",
+                  "rating": 5
+                },
+                {
+                  "id": "t5",
+                  "name": "Sneha Iyer",
+                  "location": "Chennai",
+                  "text": "They covered our family event with so much care and creativity. Every candid moment was captured perfectly and the album was delivered right on time.",
                   "rating": 5
                 }
               ]
@@ -1102,10 +1116,6 @@
                 "component": "Breadcrumb"
               },
               {
-                "key": "AboutUs",
-                "component": "PhotographyAboutUs1"
-              },
-              {
                 "key": "WhyChooseUs",
                 "component": "PhotographyWhyChooseUs2",
                 "variant": "PhotographyWhyChooseUs1"
@@ -1156,7 +1166,10 @@
               {
                 "key": "Blogs",
                 "component": "PhotographyBlogs2",
-                "variant": "PhotographyBlogs1"
+                "variant": "PhotographyBlogs1",
+                "props": {
+                  "subtitle": "LATEST BLOG"
+                }
               }
             ]
           },

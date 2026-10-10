@@ -1,19 +1,19 @@
 "use client";
 
 import Image from "next/image";
-import Link from "next/link";
-import { ArrowRight } from "lucide-react";
 import type { WhyChooseUsVariant } from "@/types";
+import CountUp from "./CountUp";
 import { icons } from "./icons";
+import { scriptFont } from "./siteData";
 
 /* Positions of the two stat cards in the image collage */
 const statPositions = ["right-[30%]", "right-[3%]"];
 
 export default function FeatursAbout({ data }: { data: WhyChooseUsVariant }) {
-  const { features, infoCard } = data;
+  const { features } = data;
 
   return (
-    <section className="relative overflow-hidden bg-[#0b0a09] py-16 lg:min-h-[680px] lg:py-12">
+    <section className="relative overflow-hidden bg-[#0b0a09] py-12 lg:min-h-[640px] lg:py-10">
       {/* ================================================= */}
       {/* BACKGROUND */}
       {/* ================================================= */}
@@ -105,7 +105,7 @@ export default function FeatursAbout({ data }: { data: WhyChooseUsVariant }) {
                   <span
                     className={`font-serif text-[36px] leading-none ${stat.highlight ? "text-black" : "text-white"}`}
                   >
-                    {stat.value}
+                    <CountUp value={stat.value} />
                   </span>
 
                   <span
@@ -136,7 +136,7 @@ export default function FeatursAbout({ data }: { data: WhyChooseUsVariant }) {
             {/* Heading */}
             <h2 className="font-serif text-[48px] leading-[0.95] text-white sm:text-[58px] lg:text-[60px]">
               {data.title1}{" "}
-              <span className="font-serif font-light italic text-[#dca653]">
+              <span className="font-normal text-[#dca653]" style={scriptFont}>
                 {data.titleScript}
               </span>
             </h2>
@@ -187,37 +187,6 @@ export default function FeatursAbout({ data }: { data: WhyChooseUsVariant }) {
                   </div>
                 );
               })}
-            </div>
-
-            {/* ================================================= */}
-            {/* FLOATING INFO CARD */}
-            {/* ================================================= */}
-
-            <div className="absolute -right-[15px] top-[165px] z-50 hidden w-[235px] border border-[#9a713c] bg-[#0d0c0b] px-6 py-6 shadow-2xl xl:block">
-
-              <p className="text-[10px] tracking-[0.18em] text-[#dca653]">
-                {infoCard.subtitle}
-              </p>
-
-              <h3 className="mt-3 font-serif text-[24px] leading-[1.05] text-white">
-                {infoCard.titleLines[0]}
-                <br />
-                {infoCard.titleLines[1]}
-              </h3>
-
-              <div className="my-4 h-[2px] w-[34px] bg-[#dca653]" />
-
-              <p className="font-sans text-[12px] leading-[1.6] text-white/55">
-                {infoCard.description}
-              </p>
-
-              <Link
-                href={infoCard.button.url}
-                className="mt-4 inline-flex items-center gap-2 text-[12px] font-medium text-[#dca653] transition hover:text-white"
-              >
-                {infoCard.button.text}
-                <ArrowRight size={14} />
-              </Link>
             </div>
           </div>
         </div>

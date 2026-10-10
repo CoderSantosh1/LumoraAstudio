@@ -1,10 +1,5 @@
 import Image from "next/image";
-import {
-  CalendarDays,
-  ChartNoAxesColumn,
-  Check,
-  FolderOpen,
-} from "lucide-react";
+import { CalendarDays, Check } from "lucide-react";
 import type { BlogPost, BlogsVariant } from "@/types";
 import { scriptFont } from "./siteData";
 
@@ -79,20 +74,6 @@ export default function BlogDetail({
             <div className="flex items-center gap-3">
               <CalendarDays size={21} strokeWidth={1.5} className="text-[#e8b264]" />
               {post.fullDate}
-            </div>
-
-            <span className="hidden h-7 w-px bg-white/25 sm:block" />
-
-            <div className="flex items-center gap-3">
-              <FolderOpen size={21} strokeWidth={1.5} className="text-[#e8b264]" />
-              {post.category}
-            </div>
-
-            <span className="hidden h-7 w-px bg-white/25 sm:block" />
-
-            <div className="flex items-center gap-3">
-              <ChartNoAxesColumn size={21} strokeWidth={2} className="text-[#e8b264]" />
-              {post.views}
             </div>
           </div>
 

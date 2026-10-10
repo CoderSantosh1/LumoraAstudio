@@ -23,7 +23,7 @@ export default function ServiceDetail({
     .slice(0, 4);
 
   return (
-    <section className="relative overflow-hidden bg-[#0b0a09] py-16 lg:py-16">
+    <section className="relative overflow-hidden bg-[#0b0a09] py-12 lg:py-14">
       {/* ================= BACKGROUND ================= */}
       <div className="pointer-events-none absolute inset-0">
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_0%,rgba(151,103,44,0.18),transparent_55%)]" />

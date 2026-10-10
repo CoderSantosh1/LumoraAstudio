@@ -33,35 +33,35 @@ export default function Services({
   };
 
   return (
-    <section className="relative overflow-hidden bg-[#0a0908] py-10 ">
+    <section className="relative overflow-hidden bg-[#0a0908] py-12 lg:py-14">
       {/* Background Glow */}
       <div className="pointer-events-none absolute right-0 top-0 h-full w-[50%] bg-[radial-gradient(circle_at_top_right,rgba(151,103,44,0.13),transparent_65%)]" />
 
       <div className="relative mx-auto max-w-[1400px] px-6 lg:px-14">
         {/* ================= HEADER ================= */}
-        <div data-reveal="up" className="mb-10 grid items-start gap-8 lg:grid-cols-[1fr_0.95fr]">
+        <div data-reveal="up" className="mb-10 grid items-end gap-6 lg:grid-cols-[1fr_0.95fr] lg:gap-10">
           {/* Left */}
           <div>
             <div className="mb-1 flex items-center gap-5">
-              <span className="font-sans text-[12px] font-medium tracking-[0.25em] text-[#dca653]">
+              <span className="font-body text-[14px] font-medium tracking-[0.16em] text-[#dca653]">
                 {data.subtitle}
               </span>
 
               <span className="h-px w-[115px] bg-[#805e35]" />
             </div>
 
-            <h2 className="font-serif text-[48px] leading-[0.95] tracking-[-1px] text-white sm:text-[56px]">
+            <h2 className="font-display text-[48px] leading-[1.05] text-white sm:text-[62px]">
               {data.title1}
             </h2>
 
-            <h3 className="mt-1 font-serif text-[47px] leading-[0.95] italic text-[#dca653] sm:text-[54px]">
+            <h3 className="-mt-3 font-script text-[52px] leading-[1.1] text-[#dca653] sm:-mt-4 sm:text-[66px]">
               {data.titleScript}
             </h3>
           </div>
 
           {/* Right */}
-          <div className="lg:pt-5 lg:pl-5">
-            <p className="max-w-[570px] font-sans text-[15px] leading-[1.6] text-white/70">
+          <div className="lg:pb-3">
+            <p className="max-w-[520px] font-body text-[16px] leading-[1.55] text-white/80 sm:text-[17px]">
               {data.descriptionLead}{" "}
               <strong className="font-semibold text-white">
                 {data.descriptionHighlight}
@@ -78,7 +78,7 @@ export default function Services({
                 key={service.number}
                 data-reveal="up"
                 style={revealDelay(index % 4)}
-                className="group relative overflow-hidden rounded-[20px] border border-[#76552d] bg-[#11100e]"
+                className="group relative flex h-full flex-col overflow-hidden rounded-[20px] border border-[#76552d] bg-[#11100e]"
             >
                 {/* IMAGE */}
                 <div className="relative h-[205px] overflow-hidden">
@@ -98,18 +98,18 @@ export default function Services({
                 </div>
 
                 {/* CONTENT */}
-                <div className="relative px-5 pb-7">
+                <div className="relative flex flex-1 flex-col px-5 pb-7">
 
                 {/* NUMBER */}
-                <div className="flex h-[42px] w-[42px] items-center justify-center rounded-full border border-[#a8793b] bg-[#11100e] font-serif text-[13px] text-[#dca653]">
+                <div className="flex h-[42px] w-[42px] items-center justify-center rounded-full border border-[#a8793b] bg-[#11100e] font-body text-[15px] text-[#dca653]">
                     {service.number}
                 </div>
 
                 {/* TITLE + ARROW */}
-                <div className="mt-5 flex items-start justify-between gap-3">
+                <div className="mt-5 flex items-center justify-between gap-3">
 
                     {/* Title */}
-                    <h3 className="font-serif text-[23px] leading-[1.02] text-white">
+                    <h3 className="font-display text-[23px] leading-[1.15] text-white">
                     {service.titleLines[0]}
                     <br />
                     {service.titleLines[1]}
@@ -119,14 +119,14 @@ export default function Services({
                     <Link
                     href={`/services/${service.slug}`}
                     aria-label={`View ${service.title}`}
-                    className="mt-[-2px] flex h-[42px] w-[42px] shrink-0 items-center justify-center rounded-full border border-[#a8793b] text-[20px] text-[#dca653] transition-all duration-300 hover:bg-[#dca653] hover:text-black"
+                    className="flex h-[42px] w-[42px] shrink-0 items-center justify-center rounded-full border border-[#a8793b] text-[20px] text-[#dca653] transition-all duration-300 hover:bg-[#dca653] hover:text-black"
                     >
                     →
                     </Link>
                 </div>
 
                 {/* DESCRIPTION */}
-                <p className="mt-4 min-h-[72px] text-[14px] leading-[1.55] text-white/60">
+                <p className="mt-4 flex-1 font-body text-[15px] leading-[1.55] text-white/70">
                     {service.description}
                 </p>
 

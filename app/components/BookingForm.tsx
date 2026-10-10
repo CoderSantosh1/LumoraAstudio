@@ -110,7 +110,7 @@ export default function BookingForm({ data }: { data: BookingVariant }) {
         <div className="absolute right-0 top-0 h-full w-[40%] bg-[radial-gradient(circle_at_90%_20%,rgba(201,140,60,0.22),transparent_60%)]" />
       </div>
 
-      <div className="relative mx-auto grid max-w-[1400px] gap-12 px-6 py-16 lg:min-h-[900px] lg:grid-cols-[minmax(0,0.85fr)_minmax(0,1fr)] lg:px-[52px] lg:py-[86px]">
+      <div className="relative mx-auto grid max-w-[1400px] gap-12 px-6 py-12 lg:min-h-[820px] lg:grid-cols-[minmax(0,0.85fr)_minmax(0,1fr)] lg:px-[52px] lg:py-14">
         {/* ================================================= */}
         {/* LEFT - INTRO */}
         {/* ================================================= */}

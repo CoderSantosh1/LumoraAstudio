@@ -34,7 +34,7 @@ export default function Faq({ data }: { data: FaqVariant }) {
         <div className="absolute inset-x-0 bottom-0 h-20 bg-gradient-to-t from-[#0b0a09] to-transparent" />
       </div>
 
-      <div className="relative mx-auto grid max-w-[1400px] gap-10 px-6 py-14 lg:grid-cols-[minmax(0,1fr)_380px] lg:gap-9 lg:px-[106px] lg:pb-16 lg:pt-11">
+      <div className="relative mx-auto grid max-w-[1400px] gap-10 px-6 py-12 lg:grid-cols-[minmax(0,1fr)_380px] lg:gap-9 lg:px-[106px] lg:pb-12 lg:pt-10">
         {/* ================================================= */}
         {/* LEFT - QUESTIONS */}
         {/* ================================================= */}
@@ -133,7 +133,8 @@ export default function Faq({ data }: { data: FaqVariant }) {
         {/* ================================================= */}
         {/* RIGHT - INFO CARD */}
         {/* ================================================= */}
-        <aside data-reveal="right" className="self-end overflow-hidden rounded-[6px] border border-[#5c4428] bg-[#0e0d0b]/90 lg:mb-[-10px]">
+        {/* Pinned to the top (below the photographer image) so it stays put when a question opens */}
+        <aside data-reveal="right" className="self-start overflow-hidden rounded-[6px] border border-[#5c4428] bg-[#0e0d0b]/90 lg:mt-[230px]">
           <div className="relative h-[205px]">
             <Image
               src={card.image.src}

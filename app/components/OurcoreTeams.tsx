@@ -4,17 +4,13 @@ import Image from "next/image";
 import Link from "next/link";
 import { revealDelay } from "./siteData";
 import type { TeamVariant } from "@/types";
-import {
-  ArrowLeft,
-  ArrowRight,
-  Globe,
-} from "lucide-react";
+import { Globe } from "lucide-react";
 
 export default function OurcoreTeams({ data: team }: { data: TeamVariant }) {
   const teamMembers = team.members;
 
   return (
-    <section className="relative overflow-hidden bg-[#0b0a09] py-16 lg:py-20">
+    <section className="relative overflow-hidden bg-[#0b0a09] py-12 lg:py-14">
       {/* ================= BACKGROUND ================= */}
 
       <div className="pointer-events-none absolute inset-0">
@@ -43,13 +39,13 @@ export default function OurcoreTeams({ data: team }: { data: TeamVariant }) {
               {team.title1}
             </h2>
 
-            <h3 className="mt-1 font-serif text-[45px] italic leading-none text-[#dca653] sm:text-[52px] lg:text-[55px]">
+            <h3 className="-mt-2 font-script text-[50px] leading-[1.1] text-[#dca653] sm:text-[60px] lg:text-[64px]">
               {team.titleScript}
             </h3>
           </div>
 
-          {/* RIGHT DESCRIPTION + ARROWS */}
-          <div className="flex items-start justify-between gap-6 lg:pt-8">
+          {/* RIGHT DESCRIPTION */}
+          <div className="lg:pt-8">
             <p className="max-w-[570px] font-sans text-[14px] leading-6 text-white/65 sm:text-[15px]">
               {team.descriptionLead}{" "}
               <strong className="font-semibold text-white">
@@ -57,25 +53,6 @@ export default function OurcoreTeams({ data: team }: { data: TeamVariant }) {
               </strong>{" "}
               {team.descriptionEnd}
             </p>
-
-            {/* Desktop arrows */}
-            <div className="hidden shrink-0 items-center gap-3 md:flex">
-              <button
-                type="button"
-                aria-label="Previous team member"
-                className="flex h-[44px] w-[44px] items-center justify-center rounded-full border border-[#9b6e32] text-[#dca653] transition-all duration-300 hover:bg-[#dca653] hover:text-black"
-              >
-                <ArrowLeft size={19} strokeWidth={1.5} />
-              </button>
-
-              <button
-                type="button"
-                aria-label="Next team member"
-                className="flex h-[44px] w-[44px] items-center justify-center rounded-full border border-[#dca653] bg-[#e4b66a] text-black transition-all duration-300 hover:bg-[#dca653]"
-              >
-                <ArrowRight size={19} strokeWidth={1.5} />
-              </button>
-            </div>
           </div>
         </div>
 
@@ -181,27 +158,6 @@ export default function OurcoreTeams({ data: team }: { data: TeamVariant }) {
             </article>
           ))}
         </div>
-
-        {/* ================= MOBILE ARROWS ================= */}
-
-        <div className="mt-7 flex justify-center gap-3 md:hidden">
-          <button
-            type="button"
-            aria-label="Previous team member"
-            className="flex h-[44px] w-[44px] items-center justify-center rounded-full border border-[#9b6e32] text-[#dca653]"
-          >
-            <ArrowLeft size={19} />
-          </button>
-
-          <button
-            type="button"
-            aria-label="Next team member"
-            className="flex h-[44px] w-[44px] items-center justify-center rounded-full border border-[#dca653] bg-[#e4b66a] text-black"
-          >
-            <ArrowRight size={19} />
-          </button>
-        </div>
-
       </div>
     </section>
   );

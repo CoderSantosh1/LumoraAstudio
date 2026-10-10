@@ -82,7 +82,7 @@ export default function Hero({ data }: { data: HeroVariant }) {
           <h1 className="max-w-[740px] font-serif text-[42px] leading-[0.95] tracking-normal text-white sm:text-[54px] md:text-[62px] lg:text-[68px]">
             {data.title1}
             <span
-              className="ml-2 inline-block font-light italic text-[#d9a44c]"
+              className="ml-2 inline-block font-normal text-[#d9a44c]"
               style={scriptFont}
             >
               {data.titleScript}

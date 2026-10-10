@@ -15,7 +15,14 @@ import { scriptFont, revealDelay } from "./siteData";
 
 const POSTS_PER_PAGE = 8;
 
-export default function BlogList({ data }: { data: BlogsVariant }) {
+export default function BlogList({
+  data,
+  subtitle = data.subtitle,
+}: {
+  data: BlogsVariant;
+  /* Overrides the section label, e.g. "LATEST BLOG" on the blog page */
+  subtitle?: string;
+}) {
   const blogPosts = data.blogs;
   const [page, setPage] = useState(1);
   const totalPages = Math.ceil(blogPosts.length / POSTS_PER_PAGE);
@@ -29,7 +36,7 @@ export default function BlogList({ data }: { data: BlogsVariant }) {
   };
 
   return (
-    <section className="relative overflow-hidden bg-[#0b0a09] py-16 lg:py-12">
+    <section className="relative overflow-hidden bg-[#0b0a09] py-12 lg:py-12">
       {/* ================= BACKGROUND ================= */}
       <div className="pointer-events-none absolute inset-0">
         <div className="absolute right-0 top-0 h-[70%] w-[55%] bg-[radial-gradient(circle_at_80%_20%,rgba(151,103,44,0.2),transparent_65%)]" />
@@ -45,7 +52,7 @@ export default function BlogList({ data }: { data: BlogsVariant }) {
           <div>
             <div className="mb-2 flex items-center gap-5">
               <span className="font-serif text-[15px] tracking-[0.08em] text-[#dca653]">
-                {data.subtitle}
+                {subtitle}
               </span>
 
               <span className="h-px w-[128px] bg-[#9c7339]" />
@@ -86,7 +93,7 @@ export default function BlogList({ data }: { data: BlogsVariant }) {
                 type="button"
                 aria-label="Next page"
                 onClick={() => goToPage(page + 1)}
-                className="flex h-[44px] w-[44px] items-center justify-center rounded-full bg-[#f2b864] text-white transition-all duration-300 hover:bg-[#f7c97f]"
+                className="flex h-[44px] w-[44px] items-center justify-center rounded-full border border-[#a8793b] text-white transition-all duration-300 hover:bg-[#dca653] hover:text-black"
               >
                 <ArrowRight size={18} strokeWidth={1.5} />
               </button>

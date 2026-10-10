@@ -179,7 +179,7 @@ export default function ContactUs({ data }: { data: ContactVariant }) {
       <section className="relative overflow-hidden bg-[#0b0a09]">
         <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_70%_0%,rgba(151,103,44,0.12),transparent_55%)]" />
 
-        <div className="relative mx-auto grid max-w-[1400px] gap-12 px-6 py-14 lg:grid-cols-[minmax(0,674px)_minmax(0,1fr)] lg:gap-14 lg:px-[31px] lg:pb-12 lg:pt-12">
+        <div className="relative mx-auto grid max-w-[1400px] gap-12 px-6 py-12 lg:grid-cols-[minmax(0,674px)_minmax(0,1fr)] lg:gap-14 lg:px-[31px] lg:pb-12 lg:pt-12">
           {/* ================================================= */}
           {/* LEFT - IMAGE + INFO CARD */}
           {/* ================================================= */}

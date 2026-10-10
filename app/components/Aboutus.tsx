@@ -5,7 +5,7 @@ import { scriptFont } from "./siteData";
 
 export default function Aboutus({ data }: { data: AboutUsVariant }) {
   return (
-    <section className="relative overflow-hidden bg-[#0b0a09] py-20 lg:py-24">
+    <section className="relative overflow-hidden bg-[#0b0a09] py-12 lg:py-14">
       <div className="relative mx-auto grid max-w-[1400px] items-center gap-10 px-6 sm:px-10 lg:grid-cols-2 lg:gap-8 lg:px-16">
 
         {/* ================= LEFT CONTENT ================= */}
@@ -26,7 +26,7 @@ export default function Aboutus({ data }: { data: AboutUsVariant }) {
             <br />
 
             <span
-              className="font-light italic text-[#d9a04a]"
+              className="font-normal text-[#d9a04a]"
               style={scriptFont}
             >
               {data.titleScript}

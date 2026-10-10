@@ -6,7 +6,7 @@ import { scriptFont, revealDelay } from "./siteData";
 
 export default function PortfolioGrid({ data }: { data: PortfolioVariant }) {
   return (
-    <section className="relative overflow-hidden bg-[#0b0a09] py-16 lg:pb-14 lg:pt-14">
+    <section className="relative overflow-hidden bg-[#0b0a09] py-12 lg:py-12">
       {/* ================= BACKGROUND ================= */}
       <div className="pointer-events-none absolute inset-0">
         <div className="absolute inset-x-0 top-0 h-[360px] bg-[radial-gradient(ellipse_at_50%_0%,rgba(151,103,44,0.22),transparent_65%)]" />

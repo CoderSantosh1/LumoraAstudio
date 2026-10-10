@@ -33,10 +33,10 @@ export default function Footer() {
         />
 
         {/* Dark overlay */}
-        <div className="absolute inset-0 bg-black/30" />
+        <div className="absolute inset-0 bg-black/65" />
 
         {/* Slight left darkening for text readability */}
-        <div className="absolute inset-0 bg-gradient-to-r from-black/45 via-black/20 to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/45 to-black/25" />
       </div>
 
       {/* ================================================= */}
@@ -229,7 +229,7 @@ export default function Footer() {
       {/* COPYRIGHT */}
       {/* ================================================= */}
 
-      <div className="relative z-10 border-t border-[#74532a] bg-black/25">
+      <div className="relative z-10 border-t border-[#74532a] bg-black/60">
         <div className="mx-auto flex min-h-[72px] max-w-[1400px] items-center justify-center px-6 lg:px-14">
           <p className="text-center font-sans text-[12px] text-white/65">
             {footer.copyrightText}

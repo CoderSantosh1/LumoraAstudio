@@ -2,13 +2,15 @@ import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import type { WhyChooseUsVariant } from "@/types";
+import CountUp from "./CountUp";
 import { icons } from "./icons";
+import { scriptFont } from "./siteData";
 
 export default function OurFeatures({ data }: { data: WhyChooseUsVariant }) {
   const { features, infoCard } = data;
 
   return (
-    <section className="relative overflow-hidden bg-[#0b0a09] py-20 lg:min-h-[700px] lg:py-16">
+    <section className="relative overflow-hidden bg-[#0b0a09] py-12 lg:min-h-[660px] lg:py-12">
       {/* Background glow */}
       <div className="pointer-events-none absolute inset-0">
         <div className="absolute right-0 top-0 h-full w-[55%] bg-[radial-gradient(circle_at_70%_35%,rgba(154,104,45,0.15),transparent_65%)]" />
@@ -35,7 +37,7 @@ export default function OurFeatures({ data }: { data: WhyChooseUsVariant }) {
             {/* Heading */}
             <h2 className="font-serif text-[52px] leading-[0.95] text-white sm:text-[60px]">
               {data.title1}{" "}
-              <span className="font-serif font-light italic text-[#dca653]">
+              <span className="font-normal text-[#dca653]" style={scriptFont}>
                 {data.titleScript}
               </span>
             </h2>
@@ -177,7 +179,7 @@ export default function OurFeatures({ data }: { data: WhyChooseUsVariant }) {
                     <span
                       className={`font-serif text-[38px] leading-none ${stat.highlight ? "text-black" : "text-white"}`}
                     >
-                      {stat.value}
+                      <CountUp value={stat.value} />
                     </span>
 
                     <span

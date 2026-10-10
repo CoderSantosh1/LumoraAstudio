@@ -33,7 +33,7 @@ export default function LetsCreatetogether({ data: cta }: { data: CtaVariant }) 
       {/* CONTENT */}
       {/* ================================================= */}
 
-      <div className="relative z-10 mx-auto flex min-h-[470px] max-w-[1400px] items-center px-6 py-16 lg:min-h-[490px] lg:px-14">
+      <div className="relative z-10 mx-auto flex min-h-[420px] max-w-[1400px] items-center px-6 py-12 lg:min-h-[440px] lg:px-14">
         <div data-reveal="left" className="max-w-[650px]">
 
           {/* Small heading */}
@@ -51,7 +51,7 @@ export default function LetsCreatetogether({ data: cta }: { data: CtaVariant }) 
           </h2>
 
           {/* Script heading */}
-          <h3 className="mt-1 font-serif text-[43px] font-light italic leading-[1.05] text-[#dca653] sm:text-[52px] lg:text-[56px]">
+          <h3 className="mt-1 font-script text-[48px] leading-[1.1] text-[#dca653] sm:text-[60px] lg:text-[64px]">
             {cta.titleScript}
           </h3>
 

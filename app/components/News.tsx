@@ -3,15 +3,17 @@
 import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight, ArrowLeft, CalendarDays } from "lucide-react";
-import { revealDelay } from "./siteData";
+import { revealDelay, scriptFont } from "./siteData";
 import type { BlogsVariant } from "@/types";
+import { useSlider } from "./useSlider";
 
 export default function News({ data }: { data: BlogsVariant }) {
-  /* Latest four posts */
-  const latestPosts = data.blogs.slice(0, 4);
+  /* Latest eight posts, 4 visible at a time on desktop */
+  const latestPosts = data.blogs.slice(0, 8);
+  const slider = useSlider(latestPosts.length, { base: 1, md: 2, lg: 4 }, 7000);
 
   return (
-    <section className="relative overflow-hidden bg-[#0b0a09] py-20 lg:py-24">
+    <section className="relative overflow-hidden bg-[#0b0a09] py-12 lg:py-14">
       {/* Background */}
       <div className="pointer-events-none absolute inset-0">
         <div className="absolute right-0 top-0 h-full w-[45%] bg-[radial-gradient(circle_at_top_right,rgba(151,103,44,0.13),transparent_65%)]" />
@@ -41,7 +43,10 @@ export default function News({ data }: { data: BlogsVariant }) {
               {data.title1}
             </h2>
 
-            <h3 className="mt-1 font-serif text-[46px] italic leading-none text-[#dca653] sm:text-[54px]">
+            <h3
+              className="mt-1 text-[42px] leading-[1.2] text-[#dca653] sm:text-[50px]"
+              style={scriptFont}
+            >
               {data.titleScript}
             </h3>
           </div>
@@ -61,7 +66,9 @@ export default function News({ data }: { data: BlogsVariant }) {
               <button
                 type="button"
                 aria-label="Previous blogs"
-                className="flex h-[43px] w-[43px] items-center justify-center rounded-full border border-[#a8793b] text-[#dca653] transition-all duration-300 hover:bg-[#dca653] hover:text-black"
+                onClick={slider.prev}
+                disabled={!slider.canSlide}
+                className="flex h-[43px] w-[43px] items-center justify-center rounded-full border border-[#a8793b] text-[#dca653] transition-all duration-300 hover:bg-[#dca653] hover:text-black disabled:opacity-40"
               >
                 <ArrowLeft size={18} strokeWidth={1.5} />
               </button>
@@ -69,7 +76,9 @@ export default function News({ data }: { data: BlogsVariant }) {
               <button
                 type="button"
                 aria-label="Next blogs"
-                className="flex h-[43px] w-[43px] items-center justify-center rounded-full bg-[#e4b15c] text-black transition-all duration-300 hover:bg-[#f2c879]"
+                onClick={slider.next}
+                disabled={!slider.canSlide}
+                className="flex h-[43px] w-[43px] items-center justify-center rounded-full border border-[#a8793b] text-[#dca653] transition-all duration-300 hover:bg-[#dca653] hover:text-black disabled:opacity-40"
               >
                 <ArrowRight size={18} strokeWidth={1.5} />
               </button>
@@ -81,16 +90,23 @@ export default function News({ data }: { data: BlogsVariant }) {
         {/* BLOG CARDS */}
         {/* ================================================= */}
 
-        <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="mt-10 overflow-hidden" {...slider.pauseHandlers}>
+          <div
+            className="-mx-2 flex transition-transform duration-700 ease-in-out"
+            style={slider.trackStyle}
+          >
           {latestPosts.map((post, index) => {
             const title = `${post.titleLead} ${post.titleScript}`;
             const href = `/blog/${post.slug}`;
 
             return (
-            <article
+            <div
               key={post.slug}
+              className="shrink-0 basis-full px-2 py-1 md:basis-1/2 lg:basis-1/4"
+            >
+            <article
               data-reveal="up"
-              style={revealDelay(index)}
+              style={revealDelay(index % 4)}
               className="group relative overflow-hidden rounded-[15px] border border-[#76552d] bg-[#11100e] transition-all duration-500 hover:-translate-y-1 hover:border-[#dca653]"
             >
               {/* IMAGE */}
@@ -162,8 +178,10 @@ export default function News({ data }: { data: BlogsVariant }) {
                 </div>
               </div>
             </article>
+            </div>
             );
           })}
+          </div>
         </div>
 
         {/* MOBILE NAVIGATION */}
@@ -171,7 +189,9 @@ export default function News({ data }: { data: BlogsVariant }) {
           <button
             type="button"
             aria-label="Previous blogs"
-            className="flex h-11 w-11 items-center justify-center rounded-full border border-[#a8793b] text-[#dca653]"
+            onClick={slider.prev}
+            disabled={!slider.canSlide}
+            className="flex h-11 w-11 items-center justify-center rounded-full border border-[#a8793b] text-[#dca653] transition-all duration-300 hover:bg-[#dca653] hover:text-black disabled:opacity-40"
           >
             <ArrowLeft size={18} />
           </button>
@@ -179,7 +199,9 @@ export default function News({ data }: { data: BlogsVariant }) {
           <button
             type="button"
             aria-label="Next blogs"
-            className="flex h-11 w-11 items-center justify-center rounded-full bg-[#e4b15c] text-black"
+            onClick={slider.next}
+            disabled={!slider.canSlide}
+            className="flex h-11 w-11 items-center justify-center rounded-full border border-[#a8793b] text-[#dca653] transition-all duration-300 hover:bg-[#dca653] hover:text-black disabled:opacity-40"
           >
             <ArrowRight size={18} />
           </button>

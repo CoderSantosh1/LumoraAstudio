@@ -53,10 +53,15 @@ export const sectionRegistry: Record<string, Render> = {
   PhotographyTestimonials1: (data) => (
     <TestMonial data={data as TestimonialsVariant} />
   ),
-  /* Home page: latest four posts */
+  /* Home page: slider of the latest posts */
   PhotographyBlogs1: (data) => <News data={data as BlogsVariant} />,
   /* Blog page: all posts with pagination */
-  PhotographyBlogs2: (data) => <BlogList data={data as BlogsVariant} />,
+  PhotographyBlogs2: (data, props) => (
+    <BlogList
+      data={data as BlogsVariant}
+      subtitle={typeof props.subtitle === "string" ? props.subtitle : undefined}
+    />
+  ),
   PhotographyPortfolio1: (data) => (
     <PortfolioGrid data={data as PortfolioVariant} />
   ),

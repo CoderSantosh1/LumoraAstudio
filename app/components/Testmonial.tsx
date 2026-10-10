@@ -2,14 +2,41 @@
 
 import { ChevronLeft, ChevronRight, Quote, Star } from "lucide-react";
 import type { Testimonial, TestimonialsVariant } from "@/types";
+import { useSlider } from "./useSlider";
 
-type NavigationDirection = "left" | "right";
+const arrowClass =
+  "flex h-[50px] w-[50px] shrink-0 items-center justify-center rounded-full border border-[#b17c35] bg-[#0b0a09] text-[#dca653] transition-all duration-300 hover:bg-[#dca653] hover:text-black disabled:opacity-40";
 
 export default function TestMonial({ data }: { data: TestimonialsVariant }) {
   const testimonials = data.testimonials;
+  const slider = useSlider(testimonials.length, { base: 1, md: 2, lg: 3 }, 6000);
+
+  const prevButton = (
+    <button
+      type="button"
+      aria-label="Previous testimonial"
+      onClick={slider.prev}
+      disabled={!slider.canSlide}
+      className={arrowClass}
+    >
+      <ChevronLeft size={22} strokeWidth={1.5} />
+    </button>
+  );
+
+  const nextButton = (
+    <button
+      type="button"
+      aria-label="Next testimonial"
+      onClick={slider.next}
+      disabled={!slider.canSlide}
+      className={arrowClass}
+    >
+      <ChevronRight size={22} strokeWidth={1.5} />
+    </button>
+  );
 
   return (
-    <section className="relative overflow-hidden bg-[#0b0a09] py-20 lg:py-24">
+    <section className="relative overflow-hidden bg-[#0b0a09] py-12 lg:py-14">
       {/* ================= BACKGROUND ================= */}
       <div className="pointer-events-none absolute inset-0">
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(125,83,35,0.10),transparent_65%)]" />
@@ -40,7 +67,7 @@ export default function TestMonial({ data }: { data: TestimonialsVariant }) {
               {data.title1}
             </h2>
 
-            <h3 className="mt-1 font-serif text-[45px] italic leading-none text-[#dca653] sm:text-[50px]">
+            <h3 className="-mt-2 font-script text-[50px] leading-[1.1] text-[#dca653] sm:text-[60px]">
               {data.titleScript}
             </h3>
           </div>
@@ -56,113 +83,40 @@ export default function TestMonial({ data }: { data: TestimonialsVariant }) {
         </div>
 
         {/* ================================================= */}
-        {/* DESKTOP TESTIMONIAL CAROUSEL */}
+        {/* SLIDER: 3 cards on desktop, 2 on tablet, 1 on mobile */}
         {/* ================================================= */}
-        <div data-reveal="up" className="mt-10 hidden items-center gap-3 lg:grid lg:grid-cols-[50px_minmax(0,1fr)_50px]">
-          {/* ================= LEFT ARROW ================= */}
-          <button
-            type="button"
-            aria-label="Previous testimonial"
-            className="flex h-[50px] w-[50px] items-center justify-center rounded-full border border-[#b17c35] bg-[#0b0a09] text-[#dca653] transition-all duration-300 hover:bg-[#dca653] hover:text-black"
-          >
-            <ChevronLeft size={22} strokeWidth={1.5} />
-          </button>
+        <div
+          data-reveal="up"
+          className="mt-10 lg:grid lg:grid-cols-[50px_minmax(0,1fr)_50px] lg:items-center lg:gap-3"
+          {...slider.pauseHandlers}
+        >
+          <div className="hidden lg:block">{prevButton}</div>
 
-          {/* ================= CARDS ================= */}
-          <div className="grid min-w-0 grid-cols-3 gap-5">
-            {testimonials.map((testimonial) => (
-              <article
-                key={testimonial.id}
-                className="group relative min-h-[265px] overflow-hidden rounded-[7px] border border-[#684e2e] bg-[#0e0d0b] transition-all duration-300 hover:border-[#b17c35]"
-              >
-                {/* SINGLE INNER CONTAINER */}
-                <div className="relative h-full px-8 py-7">
-                  {/* TOP ROW */}
-                  <div className="flex items-start justify-between">
-                    {/* Stars */}
-                    <div className="flex gap-[3px]">
-                      {[1, 2, 3, 4, 5].map((star) => (
-                        <Star
-                          key={star}
-                          size={16}
-                          fill="#e31b14"
-                          strokeWidth={0}
-                          className="text-[#e31b14]"
-                        />
-                      ))}
-                    </div>
-
-                    {/* Quote */}
-                    <Quote
-                      size={40}
-                      strokeWidth={0}
-                      fill="currentColor"
-                      className="text-white/[0.15]"
-                    />
-                  </div>
-
-                  {/* REVIEW */}
-                  <p className="mt-5 font-sans text-[13px] leading-[1.65] text-white/75">
-                    &quot;{testimonial.text}&quot;
-                  </p>
-
-                  {/* DIVIDER */}
-                  <div className="mt-5 h-px w-full bg-white/[0.10]" />
-
-                  {/* CLIENT */}
-                  <div className="mt-5">
-                    <h4 className="font-sans text-[14px] font-semibold text-white">
-                      {testimonial.name}
-                    </h4>
-
-                    <p className="mt-1 font-sans text-[12px] text-white/40">
-                      {testimonial.location}
-                    </p>
-                  </div>
+          <div className="min-w-0 overflow-hidden">
+            <div
+              className="-mx-2.5 flex transition-transform duration-700 ease-in-out"
+              style={slider.trackStyle}
+            >
+              {testimonials.map((testimonial, index) => (
+                <div
+                  key={testimonial.id}
+                  className="shrink-0 basis-full px-2.5 md:basis-1/2 lg:basis-1/3"
+                  aria-hidden={
+                    index < slider.start || index >= slider.start + slider.visible
+                  }
+                >
+                  <TestimonialCard testimonial={testimonial} />
                 </div>
-              </article>
-            ))}
+              ))}
+            </div>
           </div>
 
-          {/* ================= RIGHT ARROW ================= */}
-          <button
-            type="button"
-            aria-label="Next testimonial"
-            className="flex h-[50px] w-[50px] items-center justify-center rounded-full border border-[#b17c35] bg-[#0b0a09] text-[#dca653] transition-all duration-300 hover:bg-[#dca653] hover:text-black"
-          >
-            <ChevronRight size={22} strokeWidth={1.5} />
-          </button>
-        </div>
+          <div className="hidden lg:block">{nextButton}</div>
 
-        {/* ================================================= */}
-        {/* TABLET */}
-        {/* ================================================= */}
-        <div data-reveal="up" className="mt-10 hidden md:grid lg:hidden">
-          <div className="grid grid-cols-2 gap-5">
-            {testimonials.slice(0, 2).map((testimonial) => (
-              <TestimonialCard
-                key={testimonial.id}
-                testimonial={testimonial}
-              />
-            ))}
-          </div>
-
-          {/* Tablet arrows */}
-          <div className="mt-7 flex justify-center gap-4">
-            <NavigationButton direction="left" />
-            <NavigationButton direction="right" />
-          </div>
-        </div>
-
-        {/* ================================================= */}
-        {/* MOBILE */}
-        {/* ================================================= */}
-        <div data-reveal="up" className="mt-10 md:hidden">
-          <TestimonialCard testimonial={testimonials[0]} />
-
-          <div className="mt-7 flex justify-center gap-4">
-            <NavigationButton direction="left" />
-            <NavigationButton direction="right" />
+          {/* Mobile / tablet arrows */}
+          <div className="mt-7 flex justify-center gap-4 lg:hidden">
+            {prevButton}
+            {nextButton}
           </div>
         </div>
       </div>
@@ -176,20 +130,25 @@ export default function TestMonial({ data }: { data: TestimonialsVariant }) {
 
 function TestimonialCard({ testimonial }: { testimonial: Testimonial }) {
   return (
-    <article className="relative min-h-[265px] overflow-hidden rounded-[7px] border border-[#684e2e] bg-[#0e0d0b]">
+    <article className="group relative h-full min-h-[265px] overflow-hidden rounded-[7px] border border-[#684e2e] bg-[#0e0d0b] transition-all duration-300 hover:border-[#b17c35]">
       <div className="relative h-full px-8 py-7">
         {/* Stars + Quote */}
         <div className="flex items-start justify-between">
-          <div className="flex gap-[3px]">
-            {[1, 2, 3, 4, 5].map((star) => (
-              <Star
-                key={star}
-                size={16}
-                fill="#e31b14"
-                strokeWidth={0}
-                className="text-[#e31b14]"
-              />
-            ))}
+          <div
+            className="flex gap-[3px]"
+            aria-label={`${testimonial.rating} out of 5 stars`}
+          >
+            {Array.from({ length: testimonial.rating }, (_, i) => i + 1).map(
+              (star) => (
+                <Star
+                  key={star}
+                  size={16}
+                  fill="#e31b14"
+                  strokeWidth={0}
+                  className="text-[#e31b14]"
+                />
+              ),
+            )}
           </div>
 
           <Quote
@@ -220,27 +179,5 @@ function TestimonialCard({ testimonial }: { testimonial: Testimonial }) {
         </div>
       </div>
     </article>
-  );
-}
-
-/* ================================================= */
-/* NAVIGATION BUTTON */
-/* ================================================= */
-
-function NavigationButton({ direction }: { direction: NavigationDirection }) {
-  const isLeft = direction === "left";
-
-  return (
-    <button
-      type="button"
-      aria-label={isLeft ? "Previous testimonial" : "Next testimonial"}
-      className="flex h-[45px] w-[45px] items-center justify-center rounded-full border border-[#b17c35] bg-[#0b0a09] text-[#dca653] transition-all duration-300 hover:bg-[#dca653] hover:text-black"
-    >
-      {isLeft ? (
-        <ChevronLeft size={20} strokeWidth={1.5} />
-      ) : (
-        <ChevronRight size={20} strokeWidth={1.5} />
-      )}
-    </button>
   );
 }
