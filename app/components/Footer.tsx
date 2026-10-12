@@ -177,7 +177,7 @@ export default function Footer() {
       {/* ================================================= */}
       {/* COPYRIGHT */}
       {/* ================================================= */}
-      <div className="relative z-10 border-t border-[#74532a] bg-[#100e0c]">
+      <div className="relative z-10 border-t border-[#74532a]">
         <div className="mx-auto flex min-h-[80px] max-w-[1400px] items-center justify-center px-6 lg:px-14">
           <p className="text-center font-sans text-[13px] text-white/80">
             {footer.copyrightText}
